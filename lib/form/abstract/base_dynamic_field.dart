@@ -83,7 +83,7 @@ abstract class BaseDynamicField<T extends DynamicFieldModel>
     if (value.isEmpty) return null;
 
     for (var v in model.validations) {
-      if (!v.validate(value: value, form: form)) {
+      if (v.validate(value: value, form: form)) {
         return v.errorMessage;
       }
     }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:json_form/form/abstract/field_trigger.dart';
-import 'package:json_form/form/abstract/field_validation.dart';
-import 'package:json_form/form/abstract/trigger_event.dart';
-import 'package:json_form/form/dynamic_form.dart';
-import 'package:json_form/form/widgets/dynamic_text_model.dart';
+import 'package:auto_form/form/abstract/condition.dart';
+import 'package:auto_form/form/abstract/field_trigger.dart';
+import 'package:auto_form/form/abstract/trigger_event.dart';
+import 'package:auto_form/form/dynamic_form.dart';
+import 'package:auto_form/form/widgets/dynamic_text_model.dart';
 
 void main() {
   testWidgets("DynamicText trigger hide", (tester) async {
@@ -16,10 +16,10 @@ void main() {
         body: DynamicForm(
           children: [
             DynamicTextModel(id: "text_1", label: "First Name", triggers: [
-              FieldTrigger(
+              const FieldTrigger(
                 fieldId: "text_2",
                 value: "Khaled",
-                operation: EqualsOperation(),
+                condition: EqualsCondition(),
                 event: HideEvent(),
               ),
             ]).asWidget(key: text1Key),
@@ -54,10 +54,10 @@ void main() {
         body: DynamicForm(
           children: [
             DynamicTextModel(id: "text_1", label: "First Name", triggers: [
-              FieldTrigger(
+              const FieldTrigger(
                 fieldId: "text_2",
                 value: "Khaled",
-                operation: EqualsOperation(),
+                condition: EqualsCondition(),
                 event: ShowEvent(),
               ),
             ]).asWidget(key: text1Key),
@@ -92,10 +92,10 @@ void main() {
         body: DynamicForm(
           children: [
             DynamicTextModel(id: "text_1", label: "First Name", triggers: [
-              FieldTrigger(
+              const FieldTrigger(
                 fieldId: "text_2",
                 value: "Khaled",
-                operation: EqualsOperation(),
+                condition: EqualsCondition(),
                 event: DisableEvent(),
               ),
             ]).asWidget(key: text1Key),
@@ -129,10 +129,10 @@ void main() {
         body: DynamicForm(
           children: [
             DynamicTextModel(id: "text_1", label: "First Name", triggers: [
-              FieldTrigger(
+              const FieldTrigger(
                 fieldId: "text_2",
                 value: "Khaled",
-                operation: EqualsOperation(),
+                condition: EqualsCondition(),
                 event: EnableEvent(),
               ),
             ]).asWidget(key: text1Key),
@@ -168,7 +168,7 @@ void main() {
               FieldTrigger(
                 fieldId: "text_2",
                 value: "Khaled",
-                operation: EqualsOperation(),
+                condition: const EqualsCondition(),
                 event: ClearEvent(),
               ),
             ]).asWidget(key: text1Key),
@@ -209,7 +209,7 @@ void main() {
                   FieldTrigger(
                     fieldId: "text_2",
                     value: "Khaled",
-                    operation: EqualsOperation(),
+                    condition: const EqualsCondition(),
                     event: ClearEvent(),
                   ),
                 ]).asWidget(key: text1Key),

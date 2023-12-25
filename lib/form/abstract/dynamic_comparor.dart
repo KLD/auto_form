@@ -1,8 +1,8 @@
 enum ValueType {
   string,
+  number,
   dateTime,
   duration,
-  number,
 }
 
 abstract class Comparor<T> {
@@ -25,8 +25,8 @@ abstract class Comparor<T> {
 
 const comparors = <ValueType, Comparor>{
   ValueType.string: stringComparor,
-  ValueType.dateTime: dateTimeComparor,
   ValueType.number: numberComparor,
+  ValueType.dateTime: dateTimeComparor,
   ValueType.duration: durationComparor,
 };
 

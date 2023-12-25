@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:json_form/form/dynamic_form.dart';
+import 'package:auto_form/form/dynamic_form.dart';
 
 void main() {
   testWidgets("renders empty form", (tester) async {

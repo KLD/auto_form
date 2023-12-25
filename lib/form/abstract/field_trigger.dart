@@ -1,18 +1,18 @@
 import '../dynamic_form.dart';
-import 'field_validation.dart';
+import 'condition.dart';
 import 'trigger_event.dart';
 
 class FieldTrigger {
   final String fieldId;
-  final ValidationOperation operation;
+  final Condition condition;
 
   final TriggerEvent event;
   final String value;
 
-  FieldTrigger({
+  const FieldTrigger({
     required this.fieldId,
     required this.value,
-    required this.operation,
+    required this.condition,
     required this.event,
   });
 
@@ -25,7 +25,7 @@ class FieldTrigger {
       }
       targetValue = targetField.value;
     }
-    var result = operation(value, targetValue);
+    var result = condition(value, targetValue);
 
     var targetField = form.fields[fieldId]!;
     if (result) {
