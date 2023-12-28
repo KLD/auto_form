@@ -15,16 +15,24 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(id: "text_1", label: "First Name", triggers: [
-              const FieldTrigger(
-                fieldId: "text_2",
-                value: "Khaled",
-                condition: EqualsCondition(),
-                event: HideEvent(),
-              ),
-            ]).asWidget(key: text1Key),
-            AutoTextModel(id: "text_2", label: "Last Name")
-                .asWidget(key: text2Key),
+            AutoTextField(
+              key: text1Key,
+              id: "text_1",
+              label: "First Name",
+              triggers: const [
+                FieldTrigger(
+                  fieldId: "text_2",
+                  value: "Khaled",
+                  condition: EqualsCondition(),
+                  event: HideEvent(),
+                ),
+              ],
+            ),
+            AutoTextField(
+              key: text2Key,
+              id: "text_2",
+              label: "Last Name",
+            ),
           ],
           onSubmit: (data) {},
         ),
@@ -35,12 +43,13 @@ void main() {
 
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
-    expect(text2State.widget.hidden.value, false, reason: "Should be visibale");
+    expect(text2State.widget.isHidden.value, false,
+        reason: "Should be visibale");
 
     text1State.widget.setValue("Khaled");
     await tester.pump();
 
-    expect(text2State.widget.hidden.value, true,
+    expect(text2State.widget.isHidden.value, true,
         reason: "Should be hidden from trigger");
     expect(find.byType(TextFormField), findsOneWidget);
   });
@@ -53,16 +62,20 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(id: "text_1", label: "First Name", triggers: [
-              const FieldTrigger(
-                fieldId: "text_2",
-                value: "Khaled",
-                condition: EqualsCondition(),
-                event: ShowEvent(),
-              ),
-            ]).asWidget(key: text1Key),
-            AutoTextModel(id: "text_2", label: "Last Name", hidden: true)
-                .asWidget(key: text2Key),
+            AutoTextField(
+                id: "text_1",
+                label: "First Name",
+                triggers: const [
+                  FieldTrigger(
+                    fieldId: "text_2",
+                    value: "Khaled",
+                    condition: EqualsCondition(),
+                    event: ShowEvent(),
+                  ),
+                ],
+                key: text1Key),
+            AutoTextField(
+                id: "text_2", label: "Last Name", hidden: true, key: text2Key),
           ],
           onSubmit: (data) {},
         ),
@@ -78,7 +91,8 @@ void main() {
     await tester.pump();
 
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
-    expect(text2State.widget.hidden.value, false, reason: "Should be visibale");
+    expect(text2State.widget.isHidden.value, false,
+        reason: "Should be visibale");
 
     expect(find.byType(TextFormField), findsNWidgets(2));
   });
@@ -91,16 +105,19 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(id: "text_1", label: "First Name", triggers: [
-              const FieldTrigger(
-                fieldId: "text_2",
-                value: "Khaled",
-                condition: EqualsCondition(),
-                event: DisableEvent(),
-              ),
-            ]).asWidget(key: text1Key),
-            AutoTextModel(id: "text_2", label: "Last Name")
-                .asWidget(key: text2Key),
+            AutoTextField(
+                id: "text_1",
+                label: "First Name",
+                triggers: const [
+                  FieldTrigger(
+                    fieldId: "text_2",
+                    value: "Khaled",
+                    condition: EqualsCondition(),
+                    event: DisableEvent(),
+                  ),
+                ],
+                key: text1Key),
+            AutoTextField(id: "text_2", label: "Last Name", key: text2Key),
           ],
           onSubmit: (data) {},
         ),
@@ -110,13 +127,13 @@ void main() {
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
 
-    expect(text2State.widget.enabled.value, true,
+    expect(text2State.widget.isEnabled.value, true,
         reason: "Should be enabled before trigger");
     text1State.widget.setValue("Khaled");
 
     await tester.pump();
 
-    expect(text2State.widget.enabled.value, false,
+    expect(text2State.widget.isEnabled.value, false,
         reason: "Should be disabled");
   });
 
@@ -128,16 +145,23 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(id: "text_1", label: "First Name", triggers: [
-              const FieldTrigger(
-                fieldId: "text_2",
-                value: "Khaled",
-                condition: EqualsCondition(),
-                event: EnableEvent(),
-              ),
-            ]).asWidget(key: text1Key),
-            AutoTextModel(id: "text_2", label: "Last Name", enabled: false)
-                .asWidget(key: text2Key),
+            AutoTextField(
+                id: "text_1",
+                label: "First Name",
+                triggers: const [
+                  FieldTrigger(
+                    fieldId: "text_2",
+                    value: "Khaled",
+                    condition: EqualsCondition(),
+                    event: EnableEvent(),
+                  ),
+                ],
+                key: text1Key),
+            AutoTextField(
+                id: "text_2",
+                label: "Last Name",
+                enabled: false,
+                key: text2Key),
           ],
           onSubmit: (data) {},
         ),
@@ -147,13 +171,14 @@ void main() {
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
 
-    expect(text2State.widget.enabled.value, false,
+    expect(text2State.widget.isEnabled.value, false,
         reason: "Should be disabled bedfore trigger");
     text1State.widget.setValue("Khaled");
 
     await tester.pump();
 
-    expect(text2State.widget.enabled.value, true, reason: "Should be enabled");
+    expect(text2State.widget.isEnabled.value, true,
+        reason: "Should be enabled");
   });
 
   testWidgets("AutoText trigger clear", (tester) async {
@@ -164,17 +189,23 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(id: "text_1", label: "First Name", triggers: [
-              FieldTrigger(
-                fieldId: "text_2",
-                value: "Khaled",
-                condition: const EqualsCondition(),
-                event: ClearEvent(),
-              ),
-            ]).asWidget(key: text1Key),
-            AutoTextModel(
-                    id: "text_2", label: "Last Name", initValue: "some value")
-                .asWidget(key: text2Key),
+            AutoTextField(
+                id: "text_1",
+                label: "First Name",
+                triggers: [
+                  FieldTrigger(
+                    fieldId: "text_2",
+                    value: "Khaled",
+                    condition: const EqualsCondition(),
+                    event: ClearEvent(),
+                  ),
+                ],
+                key: text1Key),
+            AutoTextField(
+                id: "text_2",
+                label: "Last Name",
+                initValue: "some value",
+                key: text2Key),
           ],
           onSubmit: (data) {},
         ),
@@ -201,7 +232,8 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(
+            AutoTextField(
+                key: text1Key,
                 id: "text_1",
                 label: "First Name",
                 initValue: "Khaled",
@@ -212,10 +244,12 @@ void main() {
                     condition: const EqualsCondition(),
                     event: ClearEvent(),
                   ),
-                ]).asWidget(key: text1Key),
-            AutoTextModel(
-                    id: "text_2", label: "Last Name", initValue: "some value")
-                .asWidget(key: text2Key),
+                ]),
+            AutoTextField(
+                key: text2Key,
+                id: "text_2",
+                label: "Last Name",
+                initValue: "some value"),
           ],
           onSubmit: (data) {},
         ),

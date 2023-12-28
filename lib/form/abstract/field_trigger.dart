@@ -1,6 +1,5 @@
 import '../auto_form.dart';
-import 'auto_field.dart';
-import 'auto_field_model.dart';
+import 'auto_field_widget.dart';
 import 'condition.dart';
 import 'trigger_event.dart';
 
@@ -40,7 +39,7 @@ class FieldTrigger {
   }
 
   void handleEvent(
-      bool result, TriggerEvent event, AutoField<AutoFieldModel> targetField) {
+      bool result, TriggerEvent event, AutoFieldWidget targetField) {
     if (result) {
       event.apply(targetField);
     } else {

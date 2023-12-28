@@ -12,16 +12,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "string",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -44,16 +44,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "string",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -76,16 +76,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "string",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -108,16 +108,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "string",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -143,16 +143,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -175,16 +175,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -207,16 +207,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -239,16 +239,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -272,16 +272,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -305,16 +305,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -338,16 +338,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -371,16 +371,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -404,16 +404,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -437,16 +437,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -470,16 +470,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -503,16 +503,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -536,16 +536,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -568,16 +568,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: GreaterOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -601,16 +601,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "10",
                       condition: GreaterOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -636,16 +636,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "200-1-10",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -668,16 +668,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -700,16 +700,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -732,16 +732,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -765,16 +765,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: NotEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -797,16 +797,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -830,16 +830,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -863,16 +863,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -896,16 +896,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -929,16 +929,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -962,16 +962,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -995,16 +995,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1028,16 +1028,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1061,16 +1061,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1093,16 +1093,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: GreaterOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1126,16 +1126,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "2000-1-10",
                       condition: GreaterOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1161,16 +1161,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1193,16 +1193,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1225,16 +1225,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1257,16 +1257,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1289,16 +1289,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: EqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1322,16 +1322,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: NotEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1354,16 +1354,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1386,16 +1386,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1418,16 +1418,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: LessCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1450,16 +1450,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1483,16 +1483,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1516,16 +1516,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: LessOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1549,16 +1549,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1582,16 +1582,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1615,16 +1615,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: GreaterCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1647,16 +1647,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: GreaterOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),
@@ -1681,16 +1681,16 @@ void main() {
         home: Scaffold(
           body: AutoForm(
             children: [
-              AutoTextModel(
+              AutoTextField(
                 id: "text",
                 label: "Name",
-                validations: [
-                  const FieldValidation(
+                validations: const [
+                  FieldValidation(
                       errorMessage: "Some Error",
                       value: "12:30",
                       condition: GreaterOrEqualsCondition())
                 ],
-              ).asWidget(),
+              ),
             ],
             onSubmit: (data) {},
           ),

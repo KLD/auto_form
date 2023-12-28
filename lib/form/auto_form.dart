@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'abstract/auto_field.dart';
+import 'abstract/auto_field_widget.dart';
 
 class AutoForm extends StatefulWidget {
   final List<Widget> children;
   final void Function(Map<String, String>) onSubmit;
 
-  final Map<String, AutoField> fields;
+  final Map<String, AutoFieldWidget> fields;
   final EdgeInsets padding;
 
   AutoForm({
@@ -14,7 +14,7 @@ class AutoForm extends StatefulWidget {
     required this.onSubmit,
     super.key,
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-  }) : fields = {for (var e in children.whereType<AutoField>()) e.model.id: e} {
+  }) : fields = {for (var e in children.whereType<AutoFieldWidget>()) e.id: e} {
     for (var f in fields.values) {
       f.form = this;
     }
@@ -55,12 +55,13 @@ class AutoFormState extends State<AutoForm> {
 
     FocusScope.of(context).unfocus();
 
-    List<AutoField> fields = widget.children.whereType<AutoField>().toList();
+    List<AutoFieldWidget> fields =
+        widget.children.whereType<AutoFieldWidget>().toList();
 
     Map<String, String> data = {};
 
     for (var f in fields) {
-      data[f.model.id] = f.value;
+      data[f.id] = f.value;
     }
 
     widget.onSubmit(data);
@@ -68,10 +69,10 @@ class AutoFormState extends State<AutoForm> {
 
   void hideField(String id) {
     var field = widget.children
-        .whereType<AutoField>()
-        .firstWhere((e) => e.model.id == id);
+        .whereType<AutoFieldWidget>()
+        .firstWhere((e) => e.id == id);
 
-    if (field.hidden.value) return;
+    if (field.isHidden.value) return;
 
     field.hide();
     setState(() {});
@@ -79,10 +80,10 @@ class AutoFormState extends State<AutoForm> {
 
   void showField(String id) {
     var field = widget.children
-        .whereType<AutoField>()
-        .firstWhere((e) => e.model.id == id);
+        .whereType<AutoFieldWidget>()
+        .firstWhere((e) => e.id == id);
 
-    if (!field.hidden.value) return;
+    if (!field.isHidden.value) return;
 
     field.show();
     setState(() {});
@@ -90,10 +91,10 @@ class AutoFormState extends State<AutoForm> {
 
   void disableField(String id) {
     var field = widget.children
-        .whereType<AutoField>()
-        .firstWhere((e) => e.model.id == id);
+        .whereType<AutoFieldWidget>()
+        .firstWhere((e) => e.id == id);
 
-    if (!field.enabled.value) return;
+    if (!field.isEnabled.value) return;
 
     setState(() {
       field.disable();
@@ -102,10 +103,10 @@ class AutoFormState extends State<AutoForm> {
 
   void enableField(String id) {
     var field = widget.children
-        .whereType<AutoField>()
-        .firstWhere((e) => e.model.id == id);
+        .whereType<AutoFieldWidget>()
+        .firstWhere((e) => e.id == id);
 
-    if (field.enabled.value) return;
+    if (field.isEnabled.value) return;
 
     setState(() {
       field.enable();

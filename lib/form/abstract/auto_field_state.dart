@@ -14,8 +14,8 @@ abstract class AutoFieldState<T extends AutoTextField> extends State<T> {
       widget.refresh();
     });
 
-    if (widget.model.initValue.isNotEmpty) {
-      widget.setValue(widget.model.initValue);
+    if (widget.initValue.isNotEmpty) {
+      widget.setValue(widget.initValue);
     }
 
     if (widget.postponedTriggers.isNotEmpty) {
@@ -32,8 +32,7 @@ abstract class AutoFieldState<T extends AutoTextField> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
-    print("Building field ${widget.model.id}");
-    if (widget.hidden.value) return const SizedBox();
+    if (widget.isHidden.value) return const SizedBox();
     return buildField(context);
   }
 

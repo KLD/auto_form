@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-
-import 'auto_field.dart';
 import 'field_trigger.dart';
 import 'field_validation.dart';
 
-abstract class AutoFieldModel {
+abstract class AutoFieldInterface {
   final String id;
   final String label;
   final String initValue;
@@ -14,7 +11,7 @@ abstract class AutoFieldModel {
   final List<FieldValidation> validations;
   final List<FieldTrigger> triggers;
 
-  AutoFieldModel({
+  AutoFieldInterface({
     required this.id,
     this.initValue = "",
     required this.label,
@@ -24,6 +21,4 @@ abstract class AutoFieldModel {
     required this.validations,
     required this.triggers,
   });
-
-  AutoField asWidget({Key? key});
 }

@@ -11,7 +11,7 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(id: "text", label: "Name").asWidget(),
+            AutoTextField(id: "text", label: "Name"),
           ],
           onSubmit: (data) {
             result = data;
@@ -32,7 +32,7 @@ void main() {
 
   testWidgets("AutoText has assigned defaults and model values",
       (tester) async {
-    var model = AutoTextModel(
+    var model = AutoTextField(
       id: "text",
       label: "Name",
     );
@@ -40,7 +40,7 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            model.asWidget(),
+            model,
           ],
           onSubmit: (data) {},
         ),
@@ -52,13 +52,13 @@ void main() {
         tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     var field = textState.widget;
-    expect(field.enabled.value, model.enabled,
+    expect(field.isEnabled.value, model.enabled,
         reason: "enabled doesn't match model");
-    expect(field.hidden.value, model.hidden,
+    expect(field.isHidden.value, model.hidden,
         reason: "hidden doesn't match model");
     expect(field.value, model.initValue, reason: "value doesn't match model");
     expect(field.form, form.widget, reason: "Form was not set");
-    expect(field.model, model, reason: "Model was modified");
+    expect(field, model, reason: "Model was modified");
   });
 
   testWidgets("AutoText setValues alters value", (tester) async {
@@ -68,7 +68,7 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(id: "text", label: "Name").asWidget(),
+            AutoTextField(id: "text", label: "Name"),
           ],
           onSubmit: (data) {
             result = data;
@@ -97,11 +97,11 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(
+            AutoTextField(
               id: "text",
               label: "Name",
               initValue: "John Doe",
-            ).asWidget(),
+            ),
           ],
           onSubmit: (data) {
             result = data;
@@ -127,11 +127,11 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(
+            AutoTextField(
               id: "text",
               label: "Name",
               initValue: "John Doe",
-            ).asWidget(),
+            ),
           ],
           onSubmit: (data) {
             result = data;
@@ -159,11 +159,11 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(
+            AutoTextField(
               id: "text",
               label: "Name",
               hidden: true,
-            ).asWidget(),
+            ),
           ],
           onSubmit: (data) {},
         ),
@@ -178,10 +178,10 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(
+            AutoTextField(
               id: "text",
               label: "Name",
-            ).asWidget(),
+            ),
           ],
           onSubmit: (data) {},
         ),
@@ -193,9 +193,9 @@ void main() {
     var textState =
         tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-    expect(textState.widget.enabled.value, true);
+    expect(textState.widget.isEnabled.value, true);
     state.disableField("text");
-    expect(textState.widget.enabled.value, false);
+    expect(textState.widget.isEnabled.value, false);
   });
 
   testWidgets("AutoText was disabled becomes enabled", (tester) async {
@@ -203,11 +203,11 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(
+            AutoTextField(
               id: "text",
               label: "Name",
               enabled: false,
-            ).asWidget(),
+            ),
           ],
           onSubmit: (data) {},
         ),
@@ -219,9 +219,10 @@ void main() {
     var textState =
         tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-    expect(textState.widget.enabled.value, false, reason: "defaults to false");
+    expect(textState.widget.isEnabled.value, false,
+        reason: "defaults to false");
     state.enableField("text");
-    expect(textState.widget.enabled.value, true, reason: "was set to true");
+    expect(textState.widget.isEnabled.value, true, reason: "was set to true");
   });
 
   testWidgets("AutoText was visable becomes hidden", (tester) async {
@@ -229,10 +230,10 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(
+            AutoTextField(
               id: "text",
               label: "Name",
-            ).asWidget(),
+            ),
           ],
           onSubmit: (data) {},
         ),
@@ -245,9 +246,9 @@ void main() {
         tester.state<AutoTextFieldState>(find.byType(AutoTextField));
     expect(find.byType(TextFormField), findsOneWidget);
 
-    expect(textState.widget.hidden.value, false, reason: "defaults to false");
+    expect(textState.widget.isHidden.value, false, reason: "defaults to false");
     state.hideField("text");
-    expect(textState.widget.hidden.value, true, reason: "was set to true");
+    expect(textState.widget.isHidden.value, true, reason: "was set to true");
 
     await tester.pump();
     expect(find.byType(TextFormField), findsNothing);
@@ -257,11 +258,11 @@ void main() {
       home: Scaffold(
         body: AutoForm(
           children: [
-            AutoTextModel(
+            AutoTextField(
               id: "text",
               label: "Name",
               hidden: true,
-            ).asWidget(),
+            ),
           ],
           onSubmit: (data) {},
         ),
@@ -276,7 +277,7 @@ void main() {
     await tester.pump();
     var textState =
         tester.state<AutoTextFieldState>(find.byType(AutoTextField));
-    expect(textState.widget.hidden.value, false, reason: "was set to true");
+    expect(textState.widget.isHidden.value, false, reason: "was set to true");
 
     expect(find.byType(TextFormField), findsOneWidget);
   });

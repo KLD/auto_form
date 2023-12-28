@@ -27,39 +27,39 @@ class MyApp extends StatelessWidget {
           },
           children: [
             const Text("Hello World"),
-            AutoTextModel(
+            AutoTextField(
               id: "first_name",
               label: "First Name",
-              triggers: [
-                const FieldTrigger(
+              triggers: const [
+                FieldTrigger(
                     fieldId: "last",
                     value: r"\w+\s+\w+",
                     condition: NotMatchCondition(),
                     event: DisableEvent()),
-                const FieldTrigger(
+                FieldTrigger(
                   fieldId: "age",
                   value: r"\w+\s+\w+",
                   condition: NotMatchCondition(),
                   event: DisableEvent(),
                 ),
               ],
-              validations: [
-                const FieldValidation(
+              validations: const [
+                FieldValidation(
                   errorMessage: "Letters only",
                   value: r"[a-zA-Z]+",
                   condition: NotMatchCondition(),
                 ),
               ],
-            ).asWidget(),
+            ),
             const Text("Note: Please write your full name"),
-            AutoTextModel(
+            AutoTextField(
               id: "last",
               label: "Last Name",
-            ).asWidget(),
-            AutoTextModel(
+            ),
+            AutoTextField(
               id: "age",
               label: "Age",
-            ).asWidget(),
+            ),
           ],
         ),
       ),

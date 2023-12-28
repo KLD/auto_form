@@ -1,9 +1,9 @@
-import 'package:auto_form/form/abstract/auto_field.dart';
+import 'package:auto_form/form/abstract/auto_field_widget.dart';
 
 abstract class TriggerEvent {
   const TriggerEvent();
-  void apply(AutoField field);
-  void reverse(AutoField field);
+  void apply(AutoFieldWidget field);
+  void reverse(AutoFieldWidget field);
 }
 
 class _ReverseTriggerEventAdaptor extends TriggerEvent {
@@ -12,19 +12,19 @@ class _ReverseTriggerEventAdaptor extends TriggerEvent {
   const _ReverseTriggerEventAdaptor(this.triggerEvent);
 
   @override
-  void apply(AutoField field) => triggerEvent.reverse(field);
+  void apply(AutoFieldWidget field) => triggerEvent.reverse(field);
 
   @override
-  void reverse(AutoField field) => triggerEvent.apply(field);
+  void reverse(AutoFieldWidget field) => triggerEvent.apply(field);
 }
 
 class HideEvent extends TriggerEvent {
   const HideEvent();
   @override
-  void apply(AutoField field) => field.hide();
+  void apply(AutoFieldWidget field) => field.hide();
 
   @override
-  void reverse(AutoField field) => field.show();
+  void reverse(AutoFieldWidget field) => field.show();
 }
 
 class ShowEvent extends _ReverseTriggerEventAdaptor {
@@ -34,12 +34,12 @@ class ShowEvent extends _ReverseTriggerEventAdaptor {
 class EnableEvent extends TriggerEvent {
   const EnableEvent();
   @override
-  void apply(AutoField field) {
+  void apply(AutoFieldWidget field) {
     field.enable();
   }
 
   @override
-  void reverse(AutoField field) {
+  void reverse(AutoFieldWidget field) {
     field.disable();
   }
 }
@@ -50,10 +50,10 @@ class DisableEvent extends _ReverseTriggerEventAdaptor {
 
 class ClearEvent extends TriggerEvent {
   @override
-  void apply(AutoField field) {
+  void apply(AutoFieldWidget field) {
     field.clear();
   }
 
   @override
-  void reverse(AutoField field) {}
+  void reverse(AutoFieldWidget field) {}
 }

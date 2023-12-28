@@ -1,35 +1,25 @@
 import 'package:flutter/material.dart';
 
 import '../abstract/auto_field_state.dart';
-import '../abstract/auto_field_model.dart';
-import '../abstract/auto_field.dart';
+import '../abstract/auto_field_widget.dart';
 
-class AutoTextModel extends AutoFieldModel {
-  bool obscure;
-  AutoTextModel({
+class AutoTextField extends AutoFieldWidget {
+  final bool obscure;
+  AutoTextField({
+    super.key,
     required super.id,
     required super.label,
-    super.initValue,
+    super.initValue = "",
     super.enabled = true,
     super.hidden = false,
     super.required = false,
     super.validations = const [],
-    this.obscure = false,
     super.triggers = const [],
+    this.obscure = false,
   });
 
   @override
-  AutoField asWidget({Key? key}) => AutoTextField(model: this, key: key);
-}
-
-class AutoTextField extends AutoField<AutoTextModel> {
-  AutoTextField({
-    required super.model,
-    super.key,
-  });
-
-  @override
-  State<AutoField> createState() => AutoTextFieldState();
+  State<AutoFieldWidget> createState() => AutoTextFieldState();
 }
 
 class AutoTextFieldState extends AutoFieldState<AutoTextField> {
@@ -50,11 +40,11 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
   Widget buildField(BuildContext context) {
     return TextFormField(
         controller: _controller,
-        enabled: widget.enabled.value,
+        enabled: widget.isEnabled.value,
         onChanged: widget.setValue,
-        obscureText: widget.model.obscure,
+        obscureText: widget.obscure,
         decoration: InputDecoration(
-          labelText: widget.model.label,
+          labelText: widget.label,
         ),
         validator: widget.fieldValidator);
   }
