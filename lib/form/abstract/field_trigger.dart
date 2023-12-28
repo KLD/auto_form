@@ -1,4 +1,4 @@
-import '../dynamic_form.dart';
+import '../auto_form.dart';
 import 'condition.dart';
 import 'trigger_event.dart';
 
@@ -16,7 +16,7 @@ class FieldTrigger {
     required this.event,
   });
 
-  void handleTrigger({required DynamicForm form, required String value}) {
+  void handleTrigger({required AutoForm form, required String value}) {
     String targetValue = this.value;
     if (targetValue.startsWith("@")) {
       var targetField = form.fields[targetValue.substring(1)];

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:auto_form/form/abstract/condition.dart';
 import 'package:auto_form/form/abstract/field_validation.dart';
-import 'package:auto_form/form/dynamic_form.dart';
-import 'package:auto_form/form/widgets/dynamic_text_model.dart';
+import 'package:auto_form/form/auto_form.dart';
+import 'package:auto_form/form/widgets/auto_text_model.dart';
 
 void main() {
-  testWidgets("DynamicText validation MatchOperation", (tester) async {
+  testWidgets("AutoText validation MatchOperation", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -27,10 +27,10 @@ void main() {
       ),
     ));
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("123");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -38,12 +38,12 @@ void main() {
     expect(find.text("Cannot be 123"), findsOneWidget);
   });
 
-  testWidgets("DynamicText validation NotMatchOperation", (tester) async {
+  testWidgets("AutoText validation NotMatchOperation", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -60,10 +60,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("Khaled1122");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -71,12 +71,12 @@ void main() {
     expect(find.text("Letters only"), findsOneWidget);
   });
 
-  testWidgets("DynamicText validation EqualsOperation", (tester) async {
+  testWidgets("AutoText validation EqualsOperation", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -93,22 +93,22 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("IllegalWord");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
 
     expect(find.text("Some Error"), findsOneWidget);
   });
-  testWidgets("DynamicText validation NotEqualsOperation", (tester) async {
+  testWidgets("AutoText validation NotEqualsOperation", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -125,10 +125,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("IllegalWord");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -136,13 +136,13 @@ void main() {
     expect(find.text("Some Error"), findsOneWidget);
   });
 
-  testWidgets("DynamicText validation NotEqualsOperation should not appear",
+  testWidgets("AutoText validation NotEqualsOperation should not appear",
       (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -159,10 +159,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("LegalWord");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -170,12 +170,12 @@ void main() {
     expect(find.text("Some Error"), findsNothing);
   });
 
-  testWidgets("DynamicText validation GreaterCondition", (tester) async {
+  testWidgets("AutoText validation GreaterCondition", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -192,23 +192,23 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("6");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
 
     expect(find.text("Must be less than 5"), findsOneWidget);
   });
-  testWidgets("DynamicText validation GreaterCondition should not trigger",
+  testWidgets("AutoText validation GreaterCondition should not trigger",
       (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -225,10 +225,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("5");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -236,13 +236,12 @@ void main() {
     expect(find.text("Must be less than 5"), findsNothing);
   });
 
-  testWidgets("DynamicText validation GreaterOrEqualsCondition",
-      (tester) async {
+  testWidgets("AutoText validation GreaterOrEqualsCondition", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -259,23 +258,23 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("5");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
 
     expect(find.text("error message"), findsOneWidget);
   });
-  testWidgets("DynamicText validation GreaterCondition should not trigger",
+  testWidgets("AutoText validation GreaterCondition should not trigger",
       (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -292,10 +291,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("4");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -303,12 +302,12 @@ void main() {
     expect(find.text("Must be less than 5"), findsNothing);
   });
 
-  testWidgets("DynamicText validation LessCondition", (tester) async {
+  testWidgets("AutoText validation LessCondition", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -325,10 +324,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("4");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -336,13 +335,13 @@ void main() {
     expect(find.text("error message"), findsOneWidget);
   });
 
-  testWidgets("DynamicText validation LessCondition should not trigger",
+  testWidgets("AutoText validation LessCondition should not trigger",
       (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -359,10 +358,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("5");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -370,12 +369,12 @@ void main() {
     expect(find.text("error message"), findsNothing);
   });
 
-  testWidgets("DynamicText validation LessOrEqualsCondition", (tester) async {
+  testWidgets("AutoText validation LessOrEqualsCondition", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -392,10 +391,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("4");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();
@@ -403,13 +402,13 @@ void main() {
     expect(find.text("error message"), findsOneWidget);
   });
 
-  testWidgets("DynamicText validation LessOrEqualsCondition should not trigger",
+  testWidgets("AutoText validation LessOrEqualsCondition should not trigger",
       (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               validations: [
@@ -426,10 +425,10 @@ void main() {
     ));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     textState.widget.setValue("6");
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
 
     await tester.pump();

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dynamic_field_model.dart';
+import 'auto_field_model.dart';
 import 'value_pointer.dart';
 
-import '../dynamic_form.dart';
+import '../auto_form.dart';
 
-abstract class BaseDynamicField<T extends DynamicFieldModel>
-    extends StatefulWidget {
+abstract class AutoField<T extends AutoFieldModel> extends StatefulWidget {
   final T model;
-  late final DynamicForm form;
+  late final AutoForm form;
 
   final ValuePointer<void Function()?> onRefresh = ValuePointer(null);
   final List<void Function(String)> onValueSet = [];
@@ -36,7 +35,7 @@ abstract class BaseDynamicField<T extends DynamicFieldModel>
     setValue("");
   }
 
-  BaseDynamicField({
+  AutoField({
     required this.model,
     super.key,
   }) {

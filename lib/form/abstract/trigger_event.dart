@@ -1,9 +1,9 @@
-import 'package:auto_form/form/abstract/base_dynamic_field.dart';
+import 'package:auto_form/form/abstract/auto_field.dart';
 
 abstract class TriggerEvent {
   const TriggerEvent();
-  void apply(BaseDynamicField field);
-  void reverse(BaseDynamicField field);
+  void apply(AutoField field);
+  void reverse(AutoField field);
 }
 
 class _ReverseTriggerEventAdaptor extends TriggerEvent {
@@ -12,19 +12,19 @@ class _ReverseTriggerEventAdaptor extends TriggerEvent {
   const _ReverseTriggerEventAdaptor(this.triggerEvent);
 
   @override
-  void apply(BaseDynamicField field) => triggerEvent.reverse(field);
+  void apply(AutoField field) => triggerEvent.reverse(field);
 
   @override
-  void reverse(BaseDynamicField field) => triggerEvent.apply(field);
+  void reverse(AutoField field) => triggerEvent.apply(field);
 }
 
 class HideEvent extends TriggerEvent {
   const HideEvent();
   @override
-  void apply(BaseDynamicField field) => field.hide();
+  void apply(AutoField field) => field.hide();
 
   @override
-  void reverse(BaseDynamicField field) => field.show();
+  void reverse(AutoField field) => field.show();
 }
 
 class ShowEvent extends _ReverseTriggerEventAdaptor {
@@ -34,12 +34,12 @@ class ShowEvent extends _ReverseTriggerEventAdaptor {
 class EnableEvent extends TriggerEvent {
   const EnableEvent();
   @override
-  void apply(BaseDynamicField field) {
+  void apply(AutoField field) {
     field.enable();
   }
 
   @override
-  void reverse(BaseDynamicField field) {
+  void reverse(AutoField field) {
     field.disable();
   }
 }
@@ -50,10 +50,10 @@ class DisableEvent extends _ReverseTriggerEventAdaptor {
 
 class ClearEvent extends TriggerEvent {
   @override
-  void apply(BaseDynamicField field) {
+  void apply(AutoField field) {
     field.clear();
   }
 
   @override
-  void reverse(BaseDynamicField field) {}
+  void reverse(AutoField field) {}
 }

@@ -1,12 +1,12 @@
 import '../abstract/detect_value_type.dart';
-import '../dynamic_form.dart';
+import '../auto_form.dart';
 import 'package:flutter/material.dart';
 
 import '../abstract/dynamic_comparor.dart';
-import '../abstract/dynamic_field_model.dart';
-import '../abstract/base_dynamic_field.dart';
+import '../abstract/auto_field_model.dart';
+import '../abstract/auto_field.dart';
 
-class ComputedFieldModel extends DynamicFieldModel {
+class ComputedFieldModel extends AutoFieldModel {
   final String fieldIdA;
   final String fieldIdB;
 
@@ -26,11 +26,11 @@ class ComputedFieldModel extends DynamicFieldModel {
   });
 
   @override
-  BaseDynamicField<DynamicFieldModel> asWidget({Key? key}) =>
+  AutoField<AutoFieldModel> asWidget({Key? key}) =>
       DynamicComputedField(model: this, key: key);
 }
 
-class DynamicComputedField extends BaseDynamicField<ComputedFieldModel> {
+class DynamicComputedField extends AutoField<ComputedFieldModel> {
   DynamicComputedField({super.key, required super.model});
 
   @override
@@ -117,7 +117,7 @@ class _ComputedFieldWidgetState extends State<DynamicComputedField> {
 }
 
 abstract class ComputeOperation {
-  String compute(DynamicForm form, String a, String b) {
+  String compute(AutoForm form, String a, String b) {
     var typeA = detectValueType(a);
     var typeB = detectValueType(b);
 

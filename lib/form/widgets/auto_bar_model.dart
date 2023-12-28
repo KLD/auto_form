@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../abstract/dynamic_field_model.dart';
-import '../abstract/base_dynamic_field.dart';
+import '../abstract/auto_field_model.dart';
+import '../abstract/auto_field.dart';
 
-class DynamicBarModel extends DynamicFieldModel {
+class AutoBarModel extends AutoFieldModel {
   final Color color;
   final int progress;
   final String valueLabel;
   final String? url;
   final String? bodyFieldName;
 
-  DynamicBarModel({
+  AutoBarModel({
     required super.id,
     required super.label,
     super.enabled = true,
@@ -26,11 +26,10 @@ class DynamicBarModel extends DynamicFieldModel {
   });
 
   @override
-  BaseDynamicField asWidget({Key? key}) =>
-      DynamicBarField(model: this, key: key);
+  AutoField asWidget({Key? key}) => DynamicBarField(model: this, key: key);
 }
 
-class DynamicBarField extends BaseDynamicField<DynamicBarModel> {
+class DynamicBarField extends AutoField<AutoBarModel> {
   DynamicBarField({
     required super.model,
     super.key,

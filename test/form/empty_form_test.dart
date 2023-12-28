@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:auto_form/form/dynamic_form.dart';
+import 'package:auto_form/form/auto_form.dart';
 
 void main() {
   testWidgets("renders empty form", (tester) async {
@@ -8,7 +8,7 @@ void main() {
 
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           onSubmit: (data) {
             result = data;
           },
@@ -16,11 +16,11 @@ void main() {
       ),
     ));
 
-    expect(find.byType(DynamicForm), findsOneWidget);
+    expect(find.byType(AutoForm), findsOneWidget);
     expect(find.byType(ElevatedButton), findsOneWidget);
     expect(find.text("Submit"), findsOneWidget);
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
     expect(result.isEmpty, true);
   });

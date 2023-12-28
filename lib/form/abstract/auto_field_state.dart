@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/dynamic_text_model.dart';
+import '../widgets/auto_text_model.dart';
 
-abstract class DynamicFieldState<T extends DynamicTextField> extends State<T> {
+abstract class AutoFieldState<T extends AutoTextField> extends State<T> {
   @override
   void initState() {
     super.initState();

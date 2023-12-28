@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:auto_form/form/abstract/condition.dart';
 import 'package:auto_form/form/abstract/field_validation.dart';
-import 'package:auto_form/form/dynamic_form.dart';
-import 'package:auto_form/form/widgets/dynamic_text_model.dart';
+import 'package:auto_form/form/auto_form.dart';
+import 'package:auto_form/form/widgets/auto_text_model.dart';
 
 void main() {
   group("Field validation string", () {
     testWidgets("equals to string ", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -29,10 +29,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("string");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -42,9 +42,9 @@ void main() {
     testWidgets("equal to number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -61,10 +61,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -74,9 +74,9 @@ void main() {
     testWidgets("equal to duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -93,10 +93,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2020-12-30");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -106,9 +106,9 @@ void main() {
     testWidgets("equal to duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -125,10 +125,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10:10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -141,9 +141,9 @@ void main() {
     testWidgets("equals to string", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -160,10 +160,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("string");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -173,9 +173,9 @@ void main() {
     testWidgets("equal to number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -192,10 +192,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -205,9 +205,9 @@ void main() {
     testWidgets("equal to date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -224,10 +224,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2020-12-30");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -237,9 +237,9 @@ void main() {
     testWidgets("equal to duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -256,10 +256,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10:10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -270,9 +270,9 @@ void main() {
     testWidgets("less than number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -289,10 +289,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("9");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -303,9 +303,9 @@ void main() {
     testWidgets("less than number given equal number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -322,10 +322,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -336,9 +336,9 @@ void main() {
     testWidgets("less than number given greater number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -355,10 +355,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("11");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -369,9 +369,9 @@ void main() {
     testWidgets("less than or equals number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -388,10 +388,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("9");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -402,9 +402,9 @@ void main() {
     testWidgets("less than or equals given equal number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -421,10 +421,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -435,9 +435,9 @@ void main() {
     testWidgets("less than or equals given greater number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -454,10 +454,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("11");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -468,9 +468,9 @@ void main() {
     testWidgets("greater than number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -487,10 +487,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("15");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -501,9 +501,9 @@ void main() {
     testWidgets("greater than given equal number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -520,10 +520,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -534,9 +534,9 @@ void main() {
     testWidgets("greater given less number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -553,10 +553,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("9");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -566,9 +566,9 @@ void main() {
     testWidgets("greater or equals than equals number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -585,10 +585,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -599,9 +599,9 @@ void main() {
     testWidgets("greater or equals than given greater number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -618,10 +618,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("15");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -634,9 +634,9 @@ void main() {
     testWidgets("equals to string", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -653,10 +653,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("string");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -666,9 +666,9 @@ void main() {
     testWidgets("equal to number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -685,10 +685,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -698,9 +698,9 @@ void main() {
     testWidgets("equal to date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -717,10 +717,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -730,9 +730,9 @@ void main() {
     testWidgets("equal to duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -749,10 +749,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10:10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -763,9 +763,9 @@ void main() {
     testWidgets("not equal date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -782,10 +782,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-9");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -795,9 +795,9 @@ void main() {
     testWidgets("less than date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -814,10 +814,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-09");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -828,9 +828,9 @@ void main() {
     testWidgets("less than given equal date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -847,10 +847,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -861,9 +861,9 @@ void main() {
     testWidgets("less than given greater date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -880,10 +880,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-11");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -894,9 +894,9 @@ void main() {
     testWidgets("less than or equals date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -913,10 +913,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-09");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -927,9 +927,9 @@ void main() {
     testWidgets("less than or equals given equal date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -946,10 +946,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -960,9 +960,9 @@ void main() {
     testWidgets("less than or equals given greater date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -979,10 +979,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-11");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -993,9 +993,9 @@ void main() {
     testWidgets("greater than date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1012,10 +1012,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-11");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1026,9 +1026,9 @@ void main() {
     testWidgets("greater than given equal date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1045,10 +1045,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1059,9 +1059,9 @@ void main() {
     testWidgets("greater given less date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1078,10 +1078,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-09");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1091,9 +1091,9 @@ void main() {
     testWidgets("greater or equals than equals date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1110,10 +1110,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1124,9 +1124,9 @@ void main() {
     testWidgets("greater or equals than given greater date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1143,10 +1143,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-11");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1159,9 +1159,9 @@ void main() {
     testWidgets("equals to string", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1178,10 +1178,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("string");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1191,9 +1191,9 @@ void main() {
     testWidgets("equal to number", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1210,10 +1210,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1223,9 +1223,9 @@ void main() {
     testWidgets("equal to date", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1242,10 +1242,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("2000-1-10");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1255,9 +1255,9 @@ void main() {
     testWidgets("equal to duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1274,10 +1274,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:30");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1287,9 +1287,9 @@ void main() {
     testWidgets("equal to duration with different format", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1306,10 +1306,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:30:00");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1320,9 +1320,9 @@ void main() {
     testWidgets("not equal duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1339,10 +1339,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:30:01");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1352,9 +1352,9 @@ void main() {
     testWidgets("less than duration given less duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1371,10 +1371,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:29");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1384,9 +1384,9 @@ void main() {
     testWidgets("less than given equal duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1403,10 +1403,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:30");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1416,9 +1416,9 @@ void main() {
     testWidgets("less than given greater duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1435,10 +1435,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:31");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1448,9 +1448,9 @@ void main() {
     testWidgets("less than or equals given less duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1467,10 +1467,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:29");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1481,9 +1481,9 @@ void main() {
     testWidgets("less than or equals given equal duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1500,10 +1500,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:30");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1514,9 +1514,9 @@ void main() {
     testWidgets("less than or equals given greater duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1533,10 +1533,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:30:01");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1547,9 +1547,9 @@ void main() {
     testWidgets("greater than duration given greater duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1566,10 +1566,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:31");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1580,9 +1580,9 @@ void main() {
     testWidgets("greater than given equal duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1599,10 +1599,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:30");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1613,9 +1613,9 @@ void main() {
     testWidgets("greater given less duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1632,10 +1632,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:29");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1645,9 +1645,9 @@ void main() {
     testWidgets("greater or equals than equals duration", (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1664,10 +1664,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:30");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();
@@ -1679,9 +1679,9 @@ void main() {
         (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-          body: DynamicForm(
+          body: AutoForm(
             children: [
-              DynamicTextModel(
+              AutoTextModel(
                 id: "text",
                 label: "Name",
                 validations: [
@@ -1698,10 +1698,10 @@ void main() {
       ));
 
       var textState =
-          tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+          tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
       textState.widget.setValue("12:31");
-      var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+      var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
       await tester.pump();

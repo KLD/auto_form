@@ -1,4 +1,4 @@
-import '../dynamic_form.dart';
+import '../auto_form.dart';
 import 'condition.dart';
 
 class FieldValidation {
@@ -15,7 +15,7 @@ class FieldValidation {
     required this.condition,
   });
 
-  bool validate({required DynamicForm form, required String value}) {
+  bool validate({required AutoForm form, required String value}) {
     String targetValue = this.value;
     if (targetValue.startsWith("@")) {
       var targetField = form.fields[targetValue.substring(1)];

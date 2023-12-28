@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../abstract/dynamic_field_model.dart';
-import '../abstract/base_dynamic_field.dart';
+import '../abstract/auto_field_model.dart';
+import '../abstract/auto_field.dart';
 
 class DropdownItem {
   final String value;
@@ -13,10 +13,10 @@ class DropdownItem {
   });
 }
 
-class DynamicDropdownModel extends DynamicFieldModel {
+class AutoDropdownModel extends AutoFieldModel {
   final List<DropdownItem> items;
 
-  DynamicDropdownModel({
+  AutoDropdownModel({
     required super.id,
     required super.label,
     required this.items,
@@ -29,18 +29,18 @@ class DynamicDropdownModel extends DynamicFieldModel {
   });
 
   @override
-  BaseDynamicField<DynamicFieldModel> asWidget({Key? key}) =>
+  AutoField<AutoFieldModel> asWidget({Key? key}) =>
       DynamicDropdownField(model: this, key: key);
 }
 
-class DynamicDropdownField extends BaseDynamicField<DynamicDropdownModel> {
+class DynamicDropdownField extends AutoField<AutoDropdownModel> {
   DynamicDropdownField({
     required super.model,
     super.key,
   });
 
   @override
-  State<BaseDynamicField> createState() => _DynamicDropdownFieldState();
+  State<AutoField> createState() => _DynamicDropdownFieldState();
 }
 
 class _DynamicDropdownFieldState extends State<DynamicDropdownField> {

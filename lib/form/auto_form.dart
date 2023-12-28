@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
 
-import 'abstract/base_dynamic_field.dart';
+import 'abstract/auto_field.dart';
 
-class DynamicForm extends StatefulWidget {
+class AutoForm extends StatefulWidget {
   final List<Widget> children;
   final void Function(Map<String, String>) onSubmit;
 
-  final Map<String, BaseDynamicField> fields;
+  final Map<String, AutoField> fields;
   final EdgeInsets padding;
 
-  DynamicForm({
+  AutoForm({
     this.children = const [],
     required this.onSubmit,
     super.key,
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-  }) : fields = {
-          for (var e in children.whereType<BaseDynamicField>()) e.model.id: e
-        } {
+  }) : fields = {for (var e in children.whereType<AutoField>()) e.model.id: e} {
     for (var f in fields.values) {
       f.form = this;
     }
   }
 
   @override
-  State<DynamicForm> createState() => DynamicFormState();
+  State<AutoForm> createState() => AutoFormState();
 }
 
-class DynamicFormState extends State<DynamicForm> {
+class AutoFormState extends State<AutoForm> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -57,8 +55,7 @@ class DynamicFormState extends State<DynamicForm> {
 
     FocusScope.of(context).unfocus();
 
-    List<BaseDynamicField> fields =
-        widget.children.whereType<BaseDynamicField>().toList();
+    List<AutoField> fields = widget.children.whereType<AutoField>().toList();
 
     Map<String, String> data = {};
 
@@ -71,7 +68,7 @@ class DynamicFormState extends State<DynamicForm> {
 
   void hideField(String id) {
     var field = widget.children
-        .whereType<BaseDynamicField>()
+        .whereType<AutoField>()
         .firstWhere((e) => e.model.id == id);
 
     if (field.hidden.value) return;
@@ -82,7 +79,7 @@ class DynamicFormState extends State<DynamicForm> {
 
   void showField(String id) {
     var field = widget.children
-        .whereType<BaseDynamicField>()
+        .whereType<AutoField>()
         .firstWhere((e) => e.model.id == id);
 
     if (!field.hidden.value) return;
@@ -93,7 +90,7 @@ class DynamicFormState extends State<DynamicForm> {
 
   void disableField(String id) {
     var field = widget.children
-        .whereType<BaseDynamicField>()
+        .whereType<AutoField>()
         .firstWhere((e) => e.model.id == id);
 
     if (!field.enabled.value) return;
@@ -105,7 +102,7 @@ class DynamicFormState extends State<DynamicForm> {
 
   void enableField(String id) {
     var field = widget.children
-        .whereType<BaseDynamicField>()
+        .whereType<AutoField>()
         .firstWhere((e) => e.model.id == id);
 
     if (field.enabled.value) return;

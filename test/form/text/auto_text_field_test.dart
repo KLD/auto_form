@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:auto_form/form/dynamic_form.dart';
-import 'package:auto_form/form/widgets/dynamic_text_model.dart';
+import 'package:auto_form/form/auto_form.dart';
+import 'package:auto_form/form/widgets/auto_text_model.dart';
 
 void main() {
-  testWidgets("DynamicText renders", (tester) async {
+  testWidgets("AutoText renders", (tester) async {
     late Map<String, String> result;
 
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(id: "text", label: "Name").asWidget(),
+            AutoTextModel(id: "text", label: "Name").asWidget(),
           ],
           onSubmit: (data) {
             result = data;
@@ -24,21 +24,21 @@ void main() {
     expect(find.text("Submit"), findsOneWidget);
     expect(find.text("Name"), findsOneWidget);
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
     expect(result.length, 1, reason: "One text field should be rendered");
     expect(result["text"], "", reason: "Value was never set");
   });
 
-  testWidgets("DynamicText has assigned defaults and model values",
+  testWidgets("AutoText has assigned defaults and model values",
       (tester) async {
-    var model = DynamicTextModel(
+    var model = AutoTextModel(
       id: "text",
       label: "Name",
     );
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
             model.asWidget(),
           ],
@@ -47,9 +47,9 @@ void main() {
       ),
     ));
 
-    var form = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var form = tester.state<AutoFormState>(find.byType(AutoForm));
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     var field = textState.widget;
     expect(field.enabled.value, model.enabled,
@@ -61,14 +61,14 @@ void main() {
     expect(field.model, model, reason: "Model was modified");
   });
 
-  testWidgets("DynamicText setValues alters value", (tester) async {
+  testWidgets("AutoText setValues alters value", (tester) async {
     late Map<String, String> result;
 
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(id: "text", label: "Name").asWidget(),
+            AutoTextModel(id: "text", label: "Name").asWidget(),
           ],
           onSubmit: (data) {
             result = data;
@@ -81,24 +81,23 @@ void main() {
     expect(find.text("Submit"), findsOneWidget);
     expect(find.text("Name"), findsOneWidget);
 
-    var text =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+    var text = tester.state<AutoTextFieldState>(find.byType(AutoTextField));
     text.widget.setValue("hello");
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
     expect(result.length, 1, reason: "One text field should be rendered");
     expect(result["text"], "hello", reason: "Value was never set");
   });
 
-  testWidgets("DynamicText has initValue", (tester) async {
+  testWidgets("AutoText has initValue", (tester) async {
     late Map<String, String> result;
 
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               initValue: "John Doe",
@@ -115,20 +114,20 @@ void main() {
     expect(find.text("Submit"), findsOneWidget);
     expect(find.text("Name"), findsOneWidget);
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
     expect(result.length, 1, reason: "One text field should be rendered");
     expect(result["text"], "John Doe", reason: "Value was set");
   });
 
-  testWidgets("DynamicText clears value", (tester) async {
+  testWidgets("AutoText clears value", (tester) async {
     late Map<String, String> result;
 
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               initValue: "John Doe",
@@ -146,21 +145,21 @@ void main() {
     expect(find.text("Name"), findsOneWidget);
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
     textState.widget.clear();
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
     state.submit();
     expect(result.length, 1, reason: "One text field should be rendered");
     expect(result["text"], "", reason: "Value was set");
   });
 
-  testWidgets("DynamicText can be hidden", (tester) async {
+  testWidgets("AutoText can be hidden", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               hidden: true,
@@ -174,12 +173,12 @@ void main() {
     expect(find.byType(TextFormField), findsNothing);
   });
 
-  testWidgets("DynamicText was enabled becomes disabled", (tester) async {
+  testWidgets("AutoText was enabled becomes disabled", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
             ).asWidget(),
@@ -189,22 +188,22 @@ void main() {
       ),
     ));
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     expect(textState.widget.enabled.value, true);
     state.disableField("text");
     expect(textState.widget.enabled.value, false);
   });
 
-  testWidgets("DynamicText was disabled becomes enabled", (tester) async {
+  testWidgets("AutoText was disabled becomes enabled", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               enabled: false,
@@ -215,22 +214,22 @@ void main() {
       ),
     ));
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
     expect(textState.widget.enabled.value, false, reason: "defaults to false");
     state.enableField("text");
     expect(textState.widget.enabled.value, true, reason: "was set to true");
   });
 
-  testWidgets("DynamicText was visable becomes hidden", (tester) async {
+  testWidgets("AutoText was visable becomes hidden", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
             ).asWidget(),
@@ -240,25 +239,25 @@ void main() {
       ),
     ));
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
 
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
-    expect(find.byType(DynamicTextField), findsOneWidget);
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+    expect(find.byType(TextFormField), findsOneWidget);
 
     expect(textState.widget.hidden.value, false, reason: "defaults to false");
     state.hideField("text");
     expect(textState.widget.hidden.value, true, reason: "was set to true");
 
     await tester.pump();
-    expect(find.byType(DynamicTextField), findsNothing);
+    expect(find.byType(TextFormField), findsNothing);
   });
-  testWidgets("DynamicText was hidden becomes visible", (tester) async {
+  testWidgets("AutoText was hidden becomes visible", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           children: [
-            DynamicTextModel(
+            AutoTextModel(
               id: "text",
               label: "Name",
               hidden: true,
@@ -269,16 +268,16 @@ void main() {
       ),
     ));
 
-    var state = tester.state<DynamicFormState>(find.byType(DynamicForm));
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
 
-    expect(find.byType(DynamicTextField), findsNothing);
+    expect(find.byType(TextFormField), findsNothing);
 
     state.showField("text");
     await tester.pump();
     var textState =
-        tester.state<DynamicTextFieldState>(find.byType(DynamicTextField));
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
     expect(textState.widget.hidden.value, false, reason: "was set to true");
 
-    expect(find.byType(DynamicTextField), findsOneWidget);
+    expect(find.byType(TextFormField), findsOneWidget);
   });
 }

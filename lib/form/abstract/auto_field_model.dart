@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'base_dynamic_field.dart';
+import 'auto_field.dart';
 import 'field_trigger.dart';
 import 'field_validation.dart';
 
-abstract class DynamicFieldModel {
+abstract class AutoFieldModel {
   final String id;
   final String label;
   final String initValue;
@@ -14,7 +14,7 @@ abstract class DynamicFieldModel {
   final List<FieldValidation> validations;
   final List<FieldTrigger> triggers;
 
-  DynamicFieldModel({
+  AutoFieldModel({
     required this.id,
     this.initValue = "",
     required this.label,
@@ -25,5 +25,5 @@ abstract class DynamicFieldModel {
     required this.triggers,
   });
 
-  BaseDynamicField asWidget({Key? key});
+  AutoField asWidget({Key? key});
 }

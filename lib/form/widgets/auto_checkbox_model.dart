@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../abstract/dynamic_field_model.dart';
-import '../abstract/base_dynamic_field.dart';
+import '../abstract/auto_field_model.dart';
+import '../abstract/auto_field.dart';
 
-class DynamicCheckboxModel extends DynamicFieldModel {
-  DynamicCheckboxModel({
+class AutoCheckboxModel extends AutoFieldModel {
+  AutoCheckboxModel({
     required super.id,
     required super.label,
     super.enabled = true,
@@ -15,18 +15,17 @@ class DynamicCheckboxModel extends DynamicFieldModel {
   });
 
   @override
-  BaseDynamicField asWidget({Key? key}) =>
-      DynamicCheckboxField(model: this, key: key);
+  AutoField asWidget({Key? key}) => DynamicCheckboxField(model: this, key: key);
 }
 
-class DynamicCheckboxField extends BaseDynamicField<DynamicCheckboxModel> {
+class DynamicCheckboxField extends AutoField<AutoCheckboxModel> {
   DynamicCheckboxField({
     required super.model,
     super.key,
   });
 
   @override
-  State<BaseDynamicField> createState() => _DynamicCheckboxFieldState();
+  State<AutoField> createState() => _DynamicCheckboxFieldState();
 }
 
 class _DynamicCheckboxFieldState extends State<DynamicCheckboxField> {

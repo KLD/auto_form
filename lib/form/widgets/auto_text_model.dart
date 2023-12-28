@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../abstract/base_dynamic_field_state.dart';
-import '../abstract/dynamic_field_model.dart';
-import '../abstract/base_dynamic_field.dart';
+import '../abstract/auto_field_state.dart';
+import '../abstract/auto_field_model.dart';
+import '../abstract/auto_field.dart';
 
-class DynamicTextModel extends DynamicFieldModel {
+class AutoTextModel extends AutoFieldModel {
   bool obscure;
-  DynamicTextModel({
+  AutoTextModel({
     required super.id,
     required super.label,
     super.initValue,
@@ -19,21 +19,20 @@ class DynamicTextModel extends DynamicFieldModel {
   });
 
   @override
-  BaseDynamicField asWidget({Key? key}) =>
-      DynamicTextField(model: this, key: key);
+  AutoField asWidget({Key? key}) => AutoTextField(model: this, key: key);
 }
 
-class DynamicTextField extends BaseDynamicField<DynamicTextModel> {
-  DynamicTextField({
+class AutoTextField extends AutoField<AutoTextModel> {
+  AutoTextField({
     required super.model,
     super.key,
   });
 
   @override
-  State<BaseDynamicField> createState() => DynamicTextFieldState();
+  State<AutoField> createState() => AutoTextFieldState();
 }
 
-class DynamicTextFieldState extends DynamicFieldState<DynamicTextField> {
+class AutoTextFieldState extends AutoFieldState<AutoTextField> {
   final TextEditingController _controller = TextEditingController();
 
   @override

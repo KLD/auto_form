@@ -1,13 +1,13 @@
 import '../../helper/date_time_picker.dart';
-import '../abstract/dynamic_field_model.dart';
+import '../abstract/auto_field_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../abstract/base_dynamic_field.dart';
+import '../abstract/auto_field.dart';
 
 final _timeFormatter = DateFormat('HH:mm', "en-us");
 
-class DynamicTimeModel extends DynamicFieldModel {
+class DynamicTimeModel extends AutoFieldModel {
   final DateTime? minimumTime;
   final DateTime? maximumTime;
 
@@ -25,18 +25,18 @@ class DynamicTimeModel extends DynamicFieldModel {
   });
 
   @override
-  BaseDynamicField<DynamicFieldModel> asWidget({Key? key}) =>
+  AutoField<AutoFieldModel> asWidget({Key? key}) =>
       DynamicTimeField(model: this, key: key);
 }
 
-class DynamicTimeField extends BaseDynamicField<DynamicTimeModel> {
+class DynamicTimeField extends AutoField<DynamicTimeModel> {
   DynamicTimeField({
     required super.model,
     super.key,
   });
 
   @override
-  State<BaseDynamicField> createState() => _DynamicTimeFieldState();
+  State<AutoField> createState() => _DynamicTimeFieldState();
 }
 
 class _DynamicTimeFieldState extends State<DynamicTimeField> {

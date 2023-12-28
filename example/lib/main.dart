@@ -3,8 +3,8 @@ import 'package:auto_form/form/abstract/condition.dart';
 import 'package:auto_form/form/abstract/field_trigger.dart';
 import 'package:auto_form/form/abstract/field_validation.dart';
 import 'package:auto_form/form/abstract/trigger_event.dart';
-import 'package:auto_form/form/dynamic_form.dart';
-import 'package:auto_form/form/widgets/dynamic_text_model.dart';
+import 'package:auto_form/form/auto_form.dart';
+import 'package:auto_form/form/widgets/auto_text_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: DynamicForm(
+        body: AutoForm(
           onSubmit: (data) {
             print(data);
           },
           children: [
             const Text("Hello World"),
-            DynamicTextModel(
+            AutoTextModel(
               id: "first_name",
               label: "First Name",
               triggers: [
@@ -52,11 +52,11 @@ class MyApp extends StatelessWidget {
               ],
             ).asWidget(),
             const Text("Note: Please write your full name"),
-            DynamicTextModel(
+            AutoTextModel(
               id: "last",
               label: "Last Name",
             ).asWidget(),
-            DynamicTextModel(
+            AutoTextModel(
               id: "age",
               label: "Age",
             ).asWidget(),
