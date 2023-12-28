@@ -1,4 +1,6 @@
 import '../auto_form.dart';
+import 'auto_field.dart';
+import 'auto_field_model.dart';
 import 'condition.dart';
 import 'trigger_event.dart';
 
@@ -28,6 +30,17 @@ class FieldTrigger {
     var result = condition(value, targetValue);
 
     var targetField = form.fields[fieldId]!;
+
+    if (targetField.mounted.value) {
+      handleEvent(result, event, targetField);
+    } else {
+      targetField.postponedTriggers
+          .add(() => handleEvent(result, event, targetField));
+    }
+  }
+
+  void handleEvent(
+      bool result, TriggerEvent event, AutoField<AutoFieldModel> targetField) {
     if (result) {
       event.apply(targetField);
     } else {
