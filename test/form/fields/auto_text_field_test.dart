@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:auto_form/form/auto_form.dart';
-import 'package:auto_form/form/widgets/auto_text_model.dart';
+import 'package:auto_form/form/widgets/auto_text_field.dart';
 
 void main() {
   testWidgets("AutoText renders", (tester) async {

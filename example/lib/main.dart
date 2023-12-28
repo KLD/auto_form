@@ -4,7 +4,7 @@ import 'package:auto_form/form/abstract/field_trigger.dart';
 import 'package:auto_form/form/abstract/field_validation.dart';
 import 'package:auto_form/form/abstract/trigger_event.dart';
 import 'package:auto_form/form/auto_form.dart';
-import 'package:auto_form/form/widgets/auto_text_model.dart';
+import 'package:auto_form/form/widgets/auto_text_field.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,12 +34,12 @@ class MyApp extends StatelessWidget {
                 FieldTrigger(
                     fieldId: "last",
                     value: r"\w+\s+\w+",
-                    condition: NotMatchCondition(),
+                    condition: NotRegexCondition(),
                     event: DisableEvent()),
                 FieldTrigger(
                   fieldId: "age",
                   value: r"\w+\s+\w+",
-                  condition: NotMatchCondition(),
+                  condition: NotRegexCondition(),
                   event: DisableEvent(),
                 ),
               ],
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
                 FieldValidation(
                   errorMessage: "Letters only",
                   value: r"[a-zA-Z]+",
-                  condition: NotMatchCondition(),
+                  condition: NotRegexCondition(),
                 ),
               ],
             ),

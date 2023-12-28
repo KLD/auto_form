@@ -1,9 +1,9 @@
+import 'package:auto_form/form/widgets/auto_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:auto_form/form/abstract/condition.dart';
 import 'package:auto_form/form/abstract/field_validation.dart';
 import 'package:auto_form/form/auto_form.dart';
-import 'package:auto_form/form/widgets/auto_text_model.dart';
 
 void main() {
   group("Field validation string", () {
@@ -1308,7 +1308,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:30:00");
+      textState.widget.setValue("00:12:30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 

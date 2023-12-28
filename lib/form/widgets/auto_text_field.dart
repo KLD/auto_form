@@ -12,7 +12,6 @@ class AutoTextField extends AutoFieldWidget {
     super.initValue = "",
     super.enabled = true,
     super.hidden = false,
-    super.required = false,
     super.validations = const [],
     super.triggers = const [],
     this.obscure = false,

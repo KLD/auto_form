@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:auto_form/form/abstract/dynamic_comparor.dart';
+import 'package:auto_form/form/abstract/comparor.dart';
 
 void main() {
   group("String comparor", () {
@@ -32,6 +32,16 @@ void main() {
   SHOULD throw exception""", () {
       expect(() => stringComparor.divide("a", "a"), throwsA(isA<String>()));
     });
+
+    test("""WHEN parse
+  SHOULD same string""", () {
+      expect(stringComparor.parse("a"), "a");
+    });
+
+    test("""WHEN compare
+  SHOULD same string""", () {
+      expect(stringComparor.compare("a", "a"), 0);
+    });
   });
 
   group("Number comparor", () {
@@ -63,6 +73,29 @@ void main() {
     test("""WHEN divide
   SHOULD divide""", () {
       expect(numberComparor.divide(6, 2), 3);
+    });
+
+    test("""WHEN parse positive integer
+  SHOULD parse""", () {
+      expect(numberComparor.parse("1"), 1);
+    });
+    test("""WHEN parse negative integer
+  SHOULD parse""", () {
+      expect(numberComparor.parse("-1"), -1);
+    });
+
+    test("""WHEN parse positive double
+  SHOULD parse""", () {
+      expect(numberComparor.parse("1.1"), 1.1);
+    });
+    test("""WHEN parse negative double
+  SHOULD parse""", () {
+      expect(numberComparor.parse("-1.1"), -1.1);
+    });
+
+    test("""WHEN compare
+  SHOULD compare""", () {
+      expect(numberComparor.compare(1, 2), -1);
     });
   });
 
@@ -109,6 +142,25 @@ void main() {
       final dateTime = DateTime(2022, 1, 1);
       expect(() => dateTimeComparor.divide(dateTime, dateTime),
           throwsA(isA<String>()));
+    });
+
+    test("""WHEN parse date
+  SHOULD parse""", () {
+      expect(dateTimeComparor.parse("2022-01-01"), DateTime(2022, 1, 1));
+    });
+
+    test("""WHEN parse date time
+  SHOULD parse""", () {
+      expect(dateTimeComparor.parse("2022-01-01 01:01:01"),
+          DateTime(2022, 1, 1, 1, 1, 1));
+    });
+
+    test("""WHEN compare
+  SHOULD compare""", () {
+      final dateTime1 = DateTime(2022, 1, 1);
+      final dateTime2 = DateTime(2022, 1, 2);
+      expect(dateTimeComparor.compare(dateTime1, dateTime2),
+          dateTime1.compareTo(dateTime2));
     });
   });
 
@@ -168,6 +220,31 @@ void main() {
 
       expect(() => durationComparor.divide(duration, duration),
           throwsA(isA<String>()));
+    });
+
+    test("""WHEN parsing duration with days, hours, minutes and seconds
+  SHOULD return the parsed duration""", () {
+      const duration = Duration(days: 2, hours: 8, minutes: 12, seconds: 16);
+      expect(durationComparor.parse("2:8:12:16"), duration);
+    });
+    test("""WHEN parsing duration with hours, minutes and seconds
+  SHOULD return the parsed duration""", () {
+      const duration = Duration(hours: 8, minutes: 12, seconds: 16);
+      expect(durationComparor.parse("8:12:16"), duration);
+    });
+
+    test("""WHEN parsing duration with hours and minutes
+  SHOULD return the parsed duration""", () {
+      const duration = Duration(minutes: 8, seconds: 12);
+      expect(durationComparor.parse("8:12"), duration);
+    });
+
+    test("""WHEN comparing
+  SHOULD return the comparison""", () {
+      const duration1 = Duration(days: 1, hours: 2, minutes: 3, seconds: 4);
+      const duration2 = Duration(hours: 5, minutes: 6, seconds: 7);
+      expect(durationComparor.compare(duration1, duration2),
+          duration1.compareTo(duration2));
     });
   });
 }

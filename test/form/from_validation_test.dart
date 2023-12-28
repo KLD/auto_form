@@ -3,10 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:auto_form/form/abstract/condition.dart';
 import 'package:auto_form/form/abstract/field_validation.dart';
 import 'package:auto_form/form/auto_form.dart';
-import 'package:auto_form/form/widgets/auto_text_model.dart';
+import 'package:auto_form/form/widgets/auto_text_field.dart';
 
 void main() {
-  testWidgets("AutoText validation MatchOperation", (tester) async {
+  testWidgets("AutoText validation RegexValidation", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: AutoForm(
@@ -15,10 +15,41 @@ void main() {
               id: "text",
               label: "Name",
               validations: const [
-                FieldValidation(
-                    errorMessage: "Cannot be 123",
-                    value: r"123",
-                    condition: MatchCondition())
+                RegexValidation(
+                  errorMessage: "Cannot be 123",
+                  value: r"123",
+                )
+              ],
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+    var textState =
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+
+    textState.widget.setValue("123");
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+    state.submit();
+
+    await tester.pump();
+
+    expect(find.text("Cannot be 123"), findsOneWidget);
+  });
+  testWidgets("AutoText validation RegexValidation", (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+              validations: const [
+                RegexValidation(
+                  errorMessage: "Cannot be 123",
+                  value: r"123",
+                )
               ],
             ),
           ],
@@ -38,7 +69,7 @@ void main() {
     expect(find.text("Cannot be 123"), findsOneWidget);
   });
 
-  testWidgets("AutoText validation NotMatchOperation", (tester) async {
+  testWidgets("AutoText validation RegexValidation.reverse", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: AutoForm(
@@ -47,10 +78,10 @@ void main() {
               id: "text",
               label: "Name",
               validations: const [
-                FieldValidation(
-                    errorMessage: "Letters only",
-                    value: r"[a-zA-Z]+",
-                    condition: NotMatchCondition())
+                RegexValidation.reverse(
+                  errorMessage: "Letters only",
+                  value: r"[a-zA-Z]+",
+                )
               ],
             ),
           ],
@@ -71,7 +102,7 @@ void main() {
     expect(find.text("Letters only"), findsOneWidget);
   });
 
-  testWidgets("AutoText validation EqualsOperation", (tester) async {
+  testWidgets("AutoText validation EqualsValidation", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: AutoForm(
@@ -80,10 +111,10 @@ void main() {
               id: "text",
               label: "Name",
               validations: const [
-                FieldValidation(
-                    errorMessage: "Some Error",
-                    value: "IllegalWord",
-                    condition: EqualsCondition())
+                EqualsValidation(
+                  errorMessage: "Some Error",
+                  value: "IllegalWord",
+                )
               ],
             ),
           ],
@@ -103,6 +134,40 @@ void main() {
 
     expect(find.text("Some Error"), findsOneWidget);
   });
+
+  testWidgets("AutoText validation EqualsValidation default error message",
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+              validations: const [
+                EqualsValidation(
+                  value: "IllegalWord",
+                )
+              ],
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var textState =
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+
+    textState.widget.setValue("IllegalWord");
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+    state.submit();
+
+    await tester.pump();
+
+    expect(find.text("${EqualsValidation.defaultErrorMessage}IllegalWord"),
+        findsOneWidget);
+  });
   testWidgets("AutoText validation NotEqualsOperation", (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
@@ -112,10 +177,10 @@ void main() {
               id: "text",
               label: "Name",
               validations: const [
-                FieldValidation(
-                    errorMessage: "Some Error",
-                    value: "LegalWord",
-                    condition: NotEqualsCondition())
+                NotEqualsValidation(
+                  errorMessage: "Some Error",
+                  value: "LegalWord",
+                )
               ],
             ),
           ],
@@ -134,6 +199,41 @@ void main() {
     await tester.pump();
 
     expect(find.text("Some Error"), findsOneWidget);
+  });
+
+  testWidgets(
+      "AutoText validation NotEqualsOperation with default error message",
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+              validations: const [
+                NotEqualsValidation(
+                  value: "LegalWord",
+                )
+              ],
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var textState =
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+
+    textState.widget.setValue("IllegalWord");
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+    state.submit();
+
+    await tester.pump();
+
+    expect(find.text("${NotEqualsValidation.defaultErrorMessage}LegalWord"),
+        findsOneWidget);
   });
 
   testWidgets("AutoText validation NotEqualsOperation should not appear",
@@ -146,10 +246,10 @@ void main() {
               id: "text",
               label: "Name",
               validations: const [
-                FieldValidation(
-                    errorMessage: "Some Error",
-                    value: "LegalWord",
-                    condition: NotEqualsCondition())
+                NotEqualsValidation(
+                  errorMessage: "Some Error",
+                  value: "LegalWord",
+                )
               ],
             ),
           ],
@@ -201,6 +301,40 @@ void main() {
     await tester.pump();
 
     expect(find.text("Must be less than 5"), findsOneWidget);
+  });
+
+  testWidgets("AutoText validation GreaterCondition with default error message",
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+              validations: const [
+                GreaterValidation(
+                  value: "5",
+                )
+              ],
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var textState =
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+
+    textState.widget.setValue("6");
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+    state.submit();
+
+    await tester.pump();
+
+    expect(
+        find.text("${GreaterValidation.defaultErrorMessage}5"), findsOneWidget);
   });
   testWidgets("AutoText validation GreaterCondition should not trigger",
       (tester) async {
@@ -268,6 +402,40 @@ void main() {
 
     expect(find.text("error message"), findsOneWidget);
   });
+  testWidgets(
+      "AutoText validation GreaterOrEqualsCondition with default error message",
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+              validations: const [
+                GreaterOrEqualsValidation(
+                  value: "5",
+                )
+              ],
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var textState =
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+
+    textState.widget.setValue("5");
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+    state.submit();
+
+    await tester.pump();
+
+    expect(find.text("${GreaterOrEqualsValidation.defaultErrorMessage}5"),
+        findsOneWidget);
+  });
   testWidgets("AutoText validation GreaterCondition should not trigger",
       (tester) async {
     await tester.pumpWidget(MaterialApp(
@@ -333,6 +501,38 @@ void main() {
     await tester.pump();
 
     expect(find.text("error message"), findsOneWidget);
+  });
+  testWidgets("AutoText validation LessCondition with error message",
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+              validations: const [
+                LessValidation(
+                  value: "5",
+                )
+              ],
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var textState =
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+
+    textState.widget.setValue("4");
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+    state.submit();
+
+    await tester.pump();
+
+    expect(find.text("${LessValidation.defaultErrorMessage}5"), findsOneWidget);
   });
 
   testWidgets("AutoText validation LessCondition should not trigger",
@@ -402,6 +602,41 @@ void main() {
     expect(find.text("error message"), findsOneWidget);
   });
 
+  testWidgets(
+      "AutoText validation LessOrEqualsCondition with default error message",
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+              validations: const [
+                LessOrEqualsValidation(
+                  value: "5",
+                )
+              ],
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var textState =
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+
+    textState.widget.setValue("4");
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+    state.submit();
+
+    await tester.pump();
+
+    expect(find.text("${LessOrEqualsValidation.defaultErrorMessage}5"),
+        findsOneWidget);
+  });
+
   testWidgets("AutoText validation LessOrEqualsCondition should not trigger",
       (tester) async {
     await tester.pumpWidget(MaterialApp(
@@ -434,5 +669,30 @@ void main() {
     await tester.pump();
 
     expect(find.text("error message"), findsNothing);
+  });
+  testWidgets("AutoText validation RequiredCondition", (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+              validations: const [
+                RequiredValidation(),
+              ],
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+    state.submit();
+
+    await tester.pump();
+
+    expect(find.text(RequiredValidation.defaultErrorMessage), findsOneWidget);
   });
 }

@@ -121,18 +121,20 @@ class DurationComparor extends Comparor<Duration> {
   @override
   Duration parse(String str) {
     var tokens = str.split(':');
-
     Duration d = const Duration();
 
-    if (tokens.length == 3) {
-      d += Duration(hours: int.parse(tokens[0]));
-      d += Duration(minutes: int.parse(tokens[1]));
-      d += Duration(seconds: int.parse(tokens[2]));
-    } else if (tokens.length == 2) {
-      d += Duration(hours: int.parse(tokens[0]));
-      d += Duration(minutes: int.parse(tokens[1]));
-    } else if (tokens.length == 1) {
-      d += Duration(hours: int.parse(tokens[0]));
+    final parsing = [
+      (d) => Duration(days: d),
+      (d) => Duration(hours: d),
+      (d) => Duration(minutes: d),
+      (d) => Duration(seconds: d),
+    ];
+
+    for (int i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+      var value = int.parse(token);
+      var parse = parsing[(parsing.length - tokens.length) + i];
+      d = d + parse(value);
     }
 
     return d;

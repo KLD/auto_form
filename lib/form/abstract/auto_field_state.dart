@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/auto_text_model.dart';
+import '../widgets/auto_text_field.dart';
 
 abstract class AutoFieldState<T extends AutoTextField> extends State<T> {
   @override

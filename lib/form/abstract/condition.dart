@@ -1,5 +1,5 @@
 import 'detect_value_type.dart';
-import 'dynamic_comparor.dart';
+import 'comparor.dart';
 
 abstract class Condition {
   final Comparor? comparorOverride;
@@ -70,22 +70,22 @@ class LessOrEqualsCondition extends _ReverseConditionAdaptor {
   const LessOrEqualsCondition() : super(const GreaterCondition());
 }
 
-class MatchCondition extends Condition {
-  const MatchCondition() : super(comparor: const StringComparor());
+class RegexCondition extends Condition {
+  const RegexCondition() : super(comparor: const StringComparor());
   @override
   bool isValid<T>(dynamic a, dynamic b, comparor) {
     return RegExp("^$b\$").hasMatch(a);
   }
 }
 
-class NotMatchCondition extends _ReverseConditionAdaptor {
-  const NotMatchCondition() : super(const MatchCondition());
+class NotRegexCondition extends _ReverseConditionAdaptor {
+  const NotRegexCondition() : super(const RegexCondition());
 }
 
 class RequiredCondition extends Condition {
   const RequiredCondition() : super(comparor: const StringComparor());
   @override
   bool isValid<T>(dynamic a, dynamic b, comparor) {
-    return a != null && a.toString().isNotEmpty;
+    return a == null || a.toString().isEmpty;
   }
 }

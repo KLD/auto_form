@@ -51,7 +51,9 @@ class AutoFormState extends State<AutoForm> {
   }
 
   void submit() {
-    if (!_formKey.currentState!.validate()) return;
+    var isValidForm = _formKey.currentState!.validate();
+
+    if (!isValidForm) return;
 
     FocusScope.of(context).unfocus();
 

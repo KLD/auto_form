@@ -4,7 +4,7 @@ import 'package:auto_form/form/abstract/condition.dart';
 import 'package:auto_form/form/abstract/field_trigger.dart';
 import 'package:auto_form/form/abstract/trigger_event.dart';
 import 'package:auto_form/form/auto_form.dart';
-import 'package:auto_form/form/widgets/auto_text_model.dart';
+import 'package:auto_form/form/widgets/auto_text_field.dart';
 
 void main() {
   testWidgets("AutoText trigger hide", (tester) async {
@@ -52,6 +52,13 @@ void main() {
     expect(text2State.widget.isHidden.value, true,
         reason: "Should be hidden from trigger");
     expect(find.byType(TextFormField), findsOneWidget);
+
+    text1State.widget.setValue("");
+    await tester.pump();
+
+    expect(text2State.widget.isHidden.value, false,
+        reason: "Should be visibale from trigger");
+    expect(find.byType(TextFormField), findsNWidgets(2));
   });
 
   testWidgets("AutoText trigger show", (tester) async {
@@ -95,6 +102,13 @@ void main() {
         reason: "Should be visibale");
 
     expect(find.byType(TextFormField), findsNWidgets(2));
+
+    text1State.widget.setValue("");
+    await tester.pump();
+
+    expect(text2State.widget.isHidden.value, true,
+        reason: "Should be hidden from trigger");
+    expect(find.byType(TextFormField), findsOneWidget);
   });
 
   testWidgets("AutoText trigger disable", (tester) async {
@@ -135,6 +149,12 @@ void main() {
 
     expect(text2State.widget.isEnabled.value, false,
         reason: "Should be disabled");
+
+    text1State.widget.setValue("");
+    await tester.pump();
+
+    expect(text2State.widget.isEnabled.value, true,
+        reason: "Should be enabled after trigger");
   });
 
   testWidgets("AutoText trigger enable", (tester) async {
@@ -173,12 +193,18 @@ void main() {
 
     expect(text2State.widget.isEnabled.value, false,
         reason: "Should be disabled bedfore trigger");
-    text1State.widget.setValue("Khaled");
 
+    text1State.widget.setValue("Khaled");
     await tester.pump();
 
     expect(text2State.widget.isEnabled.value, true,
         reason: "Should be enabled");
+
+    text1State.widget.setValue("");
+    await tester.pump();
+
+    expect(text2State.widget.isEnabled.value, false,
+        reason: "Should be disabled after trigger");
   });
 
   testWidgets("AutoText trigger clear", (tester) async {
@@ -222,6 +248,12 @@ void main() {
     await tester.pump();
 
     expect(text2State.widget.value.isEmpty, true, reason: "Should be empty");
+
+    text1State.widget.setValue("");
+    await tester.pump();
+
+    expect(text2State.widget.value.isEmpty, true,
+        reason: "Should still be empty");
   });
 
   testWidgets("AutoText trigger clear on initValue", (tester) async {
