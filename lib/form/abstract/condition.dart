@@ -11,7 +11,7 @@ abstract class Condition {
     var valueTypeB = detectValueType(targetValue);
     var valueType = cascadeValueType(valueTypeA, valueTypeB);
 
-    var comparor = comparorOverride ?? comparors[valueType]!;
+    var comparor = comparorOverride ?? defaultComparors[valueType]!;
     dynamic parsedValue = comparor.parse(fieldValue);
     dynamic parsedTargetValue = comparor.parse(targetValue);
 

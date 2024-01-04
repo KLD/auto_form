@@ -23,7 +23,7 @@ abstract class Comparor<T> {
   T divide(T a, T b);
 }
 
-const comparors = <ValueType, Comparor>{
+const defaultComparors = <ValueType, Comparor>{
   ValueType.string: stringComparor,
   ValueType.number: numberComparor,
   ValueType.dateTime: dateTimeComparor,

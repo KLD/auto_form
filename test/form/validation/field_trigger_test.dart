@@ -20,7 +20,7 @@ void main() {
               id: "text_1",
               label: "First Name",
               triggers: const [
-                FieldTrigger(
+                FieldTrigger.other(
                   fieldId: "text_2",
                   value: "Khaled",
                   condition: EqualsCondition(),
@@ -73,7 +73,7 @@ void main() {
                 id: "text_1",
                 label: "First Name",
                 triggers: const [
-                  FieldTrigger(
+                  FieldTrigger.other(
                     fieldId: "text_2",
                     value: "Khaled",
                     condition: EqualsCondition(),
@@ -123,7 +123,7 @@ void main() {
                 id: "text_1",
                 label: "First Name",
                 triggers: const [
-                  FieldTrigger(
+                  FieldTrigger.other(
                     fieldId: "text_2",
                     value: "Khaled",
                     condition: EqualsCondition(),
@@ -169,7 +169,7 @@ void main() {
                 id: "text_1",
                 label: "First Name",
                 triggers: const [
-                  FieldTrigger(
+                  FieldTrigger.other(
                     fieldId: "text_2",
                     value: "Khaled",
                     condition: EqualsCondition(),
@@ -219,7 +219,7 @@ void main() {
                 id: "text_1",
                 label: "First Name",
                 triggers: [
-                  FieldTrigger(
+                  FieldTrigger.other(
                     fieldId: "text_2",
                     value: "Khaled",
                     condition: const EqualsCondition(),
@@ -238,12 +238,13 @@ void main() {
       ),
     ));
 
+    var form = tester.state<AutoFormState>(find.byType(AutoForm));
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
 
     expect(text2State.widget.value.isNotEmpty, true,
         reason: "Should be initValue");
-    text1State.widget.setValue("Khaled");
+    form.setValue("text_1", "Khaled");
 
     await tester.pump();
 
@@ -270,7 +271,7 @@ void main() {
                 label: "First Name",
                 initValue: "Khaled",
                 triggers: [
-                  FieldTrigger(
+                  FieldTrigger.other(
                     fieldId: "text_2",
                     value: "Khaled",
                     condition: const EqualsCondition(),

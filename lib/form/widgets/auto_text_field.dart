@@ -28,6 +28,7 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
   void initState() {
     super.initState();
 
+    widget.onValueSet.clear();
     widget.onValueSet.add((value) {
       if (_controller.text != value) {
         _controller.text = value;
@@ -44,6 +45,7 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
         obscureText: widget.obscure,
         decoration: InputDecoration(
           labelText: widget.label,
+          errorText: errorMessage,
         ),
         validator: widget.fieldValidator);
   }

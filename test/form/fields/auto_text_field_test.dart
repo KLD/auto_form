@@ -281,4 +281,60 @@ void main() {
 
     expect(find.byType(TextFormField), findsOneWidget);
   });
+
+  testWidgets("AutoText sets error message", (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+
+    expect(find.byType(TextFormField), findsOneWidget);
+
+    state.setError("text", "error here");
+    await tester.pump();
+
+    expect(find.text("error here"), findsOneWidget);
+  });
+
+  testWidgets("AutoText error clears after calling clear()", (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: AutoForm(
+          children: [
+            AutoTextField(
+              id: "text",
+              label: "Name",
+            ),
+          ],
+          onSubmit: (data) {},
+        ),
+      ),
+    ));
+
+    var state = tester.state<AutoFormState>(find.byType(AutoForm));
+
+    expect(find.byType(TextFormField), findsOneWidget);
+
+    state.setError("text", "error here");
+    await tester.pump();
+
+    expect(find.text("error here"), findsOneWidget);
+
+    var textState =
+        tester.state<AutoTextFieldState>(find.byType(AutoTextField));
+    textState.widget.clear();
+    await tester.pump();
+    expect(find.text("error here"), findsNothing);
+  });
 }

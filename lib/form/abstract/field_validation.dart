@@ -1,4 +1,4 @@
-import '../auto_form.dart';
+import 'auto_field_widget.dart';
 import 'condition.dart';
 
 class FieldValidation {
@@ -15,15 +15,8 @@ class FieldValidation {
     required this.condition,
   });
 
-  bool validate({required AutoForm form, required String value}) {
-    String targetValue = this.value;
-    if (targetValue.startsWith("@")) {
-      var targetField = form.fields[targetValue.substring(1)];
-      if (targetField == null) {
-        throw "Field with id ${targetValue.substring(1)} not found";
-      }
-      targetValue = targetField.value;
-    }
+  bool validate({required AutoFieldWidget field, required String value}) {
+    String targetValue = field.form.resolveValue(value);
 
     return condition(value, targetValue);
   }

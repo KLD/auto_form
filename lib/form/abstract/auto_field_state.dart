@@ -1,7 +1,9 @@
+import 'package:auto_form/form/abstract/auto_field_widget.dart';
 import 'package:flutter/material.dart';
-import '../widgets/auto_text_field.dart';
 
-abstract class AutoFieldState<T extends AutoTextField> extends State<T> {
+abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
+  String? errorMessage;
+
   @override
   void initState() {
     super.initState();
@@ -10,9 +12,13 @@ abstract class AutoFieldState<T extends AutoTextField> extends State<T> {
       setState(() {});
     };
 
-    widget.onValueSet.add((value) {
-      widget.refresh();
-    });
+    widget.onValueSet.add((value) {});
+
+    widget.setErrorPointer.value = (message) {
+      setState(() {
+        errorMessage = message;
+      });
+    };
 
     if (widget.initValue.isNotEmpty) {
       widget.setValue(widget.initValue);

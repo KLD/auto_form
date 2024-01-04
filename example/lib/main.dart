@@ -1,3 +1,4 @@
+import 'package:auto_form/form/widgets/auto_computed_field.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_form/form/abstract/condition.dart';
 import 'package:auto_form/form/abstract/field_trigger.dart';
@@ -31,35 +32,59 @@ class MyApp extends StatelessWidget {
               id: "first_name",
               label: "First Name",
               triggers: const [
-                FieldTrigger(
-                    fieldId: "last",
-                    value: r"\w+\s+\w+",
-                    condition: NotRegexCondition(),
-                    event: DisableEvent()),
-                FieldTrigger(
+                FieldTrigger.other(
+                  fieldId: "last_name",
+                  value: "ping",
+                  condition: EqualsCondition(),
+                  event: SetValueEvent("pong"),
+                ),
+                FieldTrigger.other(
                   fieldId: "age",
-                  value: r"\w+\s+\w+",
-                  condition: NotRegexCondition(),
-                  event: DisableEvent(),
+                  event: HideEvent(),
+                  value: "hide",
+                  condition: EqualsCondition(),
                 ),
               ],
               validations: const [
-                FieldValidation(
+                NotEqualsValidation(value: "kld0"),
+                RegexValidation.reverse(
                   errorMessage: "Letters only",
                   value: r"[a-zA-Z]+",
-                  condition: NotRegexCondition(),
                 ),
               ],
             ),
             const Text("Note: Please write your full name"),
             AutoTextField(
-              id: "last",
+              id: "last_name",
               label: "Last Name",
             ),
             AutoTextField(
               id: "age",
               label: "Age",
             ),
+            AutoTextField(
+              id: "first_name_again",
+              label: "First Name again",
+              validations: const [
+                EqualsValidation(value: "@first_name"),
+              ],
+              triggers: const [
+                FieldTrigger.other(
+                  fieldId: "full_name",
+                  value: "error",
+                  condition: EqualsCondition(),
+                  event: FormErrorEvent("BIG ERROR"),
+                ),
+              ],
+            ),
+            AutoComputedField(
+              id: "full_name",
+              label: "Full Name",
+              fieldIdA: "@first_name",
+              fieldIdB: "@last_name",
+              hidden: false,
+              operation: AddOperation(),
+            )
           ],
         ),
       ),

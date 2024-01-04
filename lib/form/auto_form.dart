@@ -1,3 +1,4 @@
+import 'package:auto_form/form/abstract/value_pointer.dart';
 import 'package:flutter/material.dart';
 
 import 'abstract/auto_field_widget.dart';
@@ -8,6 +9,13 @@ class AutoForm extends StatefulWidget {
 
   final Map<String, AutoFieldWidget> fields;
   final EdgeInsets padding;
+
+  final ValuePointer<void Function(String)> setErrorPointer =
+      ValuePointer((_) {});
+  final ValuePointer<void Function()> clearErrorPointer = ValuePointer(() {});
+
+  void setError(String error) => setErrorPointer.value(error);
+  void clearError() => clearErrorPointer.value();
 
   AutoForm({
     this.children = const [],
@@ -22,30 +30,65 @@ class AutoForm extends StatefulWidget {
 
   @override
   State<AutoForm> createState() => AutoFormState();
+
+  String resolveValue(String value) {
+    if (value.startsWith("@")) {
+      var targetField = findFieldById(value.substring(1));
+
+      return targetField.value;
+    }
+    return value;
+  }
+
+  AutoFieldWidget findFieldById(String id) {
+    return children.whereType<AutoFieldWidget>().firstWhere((e) => e.id == id);
+  }
 }
 
 class AutoFormState extends State<AutoForm> {
   final _formKey = GlobalKey<FormState>();
+  String? _errorMessage;
 
   @override
   void initState() {
     super.initState();
+    widget.setErrorPointer.value = setFromError;
+    widget.clearErrorPointer.value = clearFormError;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: ListView(
-        shrinkWrap: true,
-        children: [
-          ...widget.children,
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: submit,
-            child: const Text("Submit"),
-          )
-        ].map((e) => Padding(padding: widget.padding, child: e)).toList(),
+    return SafeArea(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (_errorMessage != null)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  _errorMessage!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  ...widget.children,
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: submit,
+                    child: const Text("Submit"),
+                  )
+                ]
+                    .map((e) => Padding(padding: widget.padding, child: e))
+                    .toList(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -112,6 +155,40 @@ class AutoFormState extends State<AutoForm> {
 
     setState(() {
       field.enable();
+    });
+  }
+
+  void setValue(String id, String value) {
+    var field = widget.children
+        .whereType<AutoFieldWidget>()
+        .firstWhere((e) => e.id == id);
+
+    field.setValue(value);
+  }
+
+  void setError(String id, String errorMessage) {
+    var field = widget.children
+        .whereType<AutoFieldWidget>()
+        .firstWhere((e) => e.id == id);
+
+    field.setError(errorMessage);
+  }
+
+  void clearError() {
+    setState(() {
+      _errorMessage = null;
+    });
+  }
+
+  void setFromError(String error) {
+    setState(() {
+      _errorMessage = error;
+    });
+  }
+
+  void clearFormError() {
+    setState(() {
+      _errorMessage = null;
     });
   }
 }

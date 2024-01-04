@@ -34,26 +34,50 @@ class ShowEvent extends _ReverseTriggerEventAdaptor {
 class EnableEvent extends TriggerEvent {
   const EnableEvent();
   @override
-  void apply(AutoFieldWidget field) {
-    field.enable();
-  }
+  void apply(field) => field.enable();
 
   @override
-  void reverse(AutoFieldWidget field) {
-    field.disable();
-  }
+  void reverse(field) => field.disable();
 }
 
 class DisableEvent extends _ReverseTriggerEventAdaptor {
   const DisableEvent() : super(const EnableEvent());
 }
 
-class ClearEvent extends TriggerEvent {
+class SetValueEvent extends TriggerEvent {
+  final String value;
+  const SetValueEvent(this.value);
   @override
-  void apply(AutoFieldWidget field) {
-    field.clear();
-  }
+  void apply(field) => field.setValue(value);
 
   @override
-  void reverse(AutoFieldWidget field) {}
+  void reverse(field) {}
+}
+
+class ClearEvent extends TriggerEvent {
+  @override
+  void apply(field) => field.clear();
+
+  @override
+  void reverse(field) {}
+}
+
+class FieldErrorEvent extends TriggerEvent {
+  final String errorMessage;
+  const FieldErrorEvent(this.errorMessage);
+  @override
+  void apply(field) => field.setError(errorMessage);
+
+  @override
+  void reverse(field) => field.clearError();
+}
+
+class FormErrorEvent extends TriggerEvent {
+  final String errorMessage;
+  const FormErrorEvent(this.errorMessage);
+  @override
+  void apply(field) => field.form.setError(errorMessage);
+
+  @override
+  void reverse(field) => field.form.clearError();
 }

@@ -18,6 +18,8 @@ abstract class AutoFieldWidget extends StatefulWidget {
 
   final ValuePointer<void Function()?> onRefresh = ValuePointer(null);
   final List<void Function(String)> onValueSet = [];
+  final ValuePointer<void Function(String?)> setErrorPointer =
+      ValuePointer((_) {});
 
   final StringPointer _valuePointer = StringPointer("");
   final BoolPointer isHidden = BoolPointer(false);
@@ -37,6 +39,11 @@ abstract class AutoFieldWidget extends StatefulWidget {
     this.triggers = const [],
     Key? key,
   }) : super(key: key) {
+    assert(validations.where((e) => e.value == "@$id").isEmpty,
+        "Field validation cannot refrence itself");
+    assert(triggers.where((e) => e.fieldId == id).isEmpty,
+        "Triggers cannot refrence itself");
+
     _valuePointer.value = initValue;
     isHidden.value = hidden;
     isEnabled.value = enabled;
@@ -46,7 +53,7 @@ abstract class AutoFieldWidget extends StatefulWidget {
     _valuePointer.value = value;
 
     for (var t in triggers) {
-      t.handleTrigger(form: form, value: value);
+      t.handleTrigger(field: this, fieldValue: value);
     }
 
     for (var e in onValueSet) {
@@ -54,8 +61,21 @@ abstract class AutoFieldWidget extends StatefulWidget {
     }
   }
 
-  void clear() {
+  void setError(String? errorMessage) {
+    setErrorPointer.value(errorMessage);
+  }
+
+  void clearError() {
+    setErrorPointer.value(null);
+  }
+
+  void clearValue() {
     setValue("");
+  }
+
+  void clear() {
+    clearError();
+    clearValue();
   }
 
   void refresh() {
@@ -85,12 +105,18 @@ abstract class AutoFieldWidget extends StatefulWidget {
   String? fieldValidator(String? value) {
     value ??= "";
 
+    List<String> errors = [];
+
     for (var v in validations) {
-      if (v.validate(value: value, form: form)) {
-        return v.errorMessage;
+      if (v.validate(value: value, field: this)) {
+        errors.add(v.errorMessage);
       }
     }
 
-    return null;
+    return errors.isEmpty
+        ? null
+        : errors.length == 1
+            ? errors.first
+            : errors.map((e) => "- $e").join("\n");
   }
 }

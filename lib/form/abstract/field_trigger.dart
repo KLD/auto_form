@@ -1,44 +1,50 @@
-import '../auto_form.dart';
 import 'auto_field_widget.dart';
 import 'condition.dart';
 import 'trigger_event.dart';
 
 class FieldTrigger {
-  final String fieldId;
-  final Condition condition;
-
-  final TriggerEvent event;
+  /// Target value to test condition with field value. Prefix with `@` to refrence another field
   final String value;
 
-  const FieldTrigger({
-    required this.fieldId,
+  /// Condition to test value and field value
+  final Condition condition;
+
+  /// Target field to trigger event on
+  final String? fieldId;
+
+  /// Event to be triggered when condition is true
+  final TriggerEvent event;
+
+  const FieldTrigger.other({
+    required String this.fieldId,
     required this.value,
     required this.condition,
     required this.event,
   });
 
-  void handleTrigger({required AutoForm form, required String value}) {
-    String targetValue = this.value;
-    if (targetValue.startsWith("@")) {
-      var targetField = form.fields[targetValue.substring(1)];
-      if (targetField == null) {
-        throw "Field with id ${targetValue.substring(1)} not found";
-      }
-      targetValue = targetField.value;
-    }
-    var result = condition(value, targetValue);
+  const FieldTrigger.self({
+    required this.value,
+    required this.condition,
+    required this.event,
+  }) : fieldId = null;
 
-    var targetField = form.fields[fieldId]!;
+  /// Testers condition given target value with field value. Applies or reverses trigger based on result.
+  void handleTrigger(
+      {required AutoFieldWidget field, required String fieldValue}) {
+    String targetValue = field.form.resolveValue(value);
+
+    var result = condition(fieldValue, targetValue);
+    var targetField = fieldId == null ? field : field.form.fields[fieldId]!;
 
     if (targetField.mounted.value) {
-      handleEvent(result, event, targetField);
+      _handleEvent(result, event, targetField);
     } else {
       targetField.postponedTriggers
-          .add(() => handleEvent(result, event, targetField));
+          .add(() => _handleEvent(result, event, targetField));
     }
   }
 
-  void handleEvent(
+  void _handleEvent(
       bool result, TriggerEvent event, AutoFieldWidget targetField) {
     if (result) {
       event.apply(targetField);
