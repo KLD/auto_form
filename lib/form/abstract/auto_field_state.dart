@@ -9,7 +9,9 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
     super.initState();
 
     widget.onRefresh.value = () {
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     };
 
     widget.onValueSet.add((value) {});
