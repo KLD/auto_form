@@ -1,9 +1,10 @@
-import 'package:auto_form/form/widgets/auto_computed_field.dart';
-import 'package:flutter/material.dart';
-import 'package:auto_form/form/abstract/condition.dart';
-import 'package:auto_form/form/abstract/field_trigger.dart';
 import 'package:auto_form/form/abstract/field_validation.dart';
-import 'package:auto_form/form/abstract/trigger_event.dart';
+import 'package:auto_form/form/widgets/auto_checkbox_model.dart';
+import 'package:auto_form/form/widgets/auto_computed_field.dart';
+import 'package:auto_form/form/widgets/auto_date_model.dart';
+import 'package:auto_form/form/widgets/auto_dropdown_model.dart';
+import 'package:auto_form/form/widgets/auto_time_model.dart';
+import 'package:flutter/material.dart';
 import 'package:auto_form/form/auto_form.dart';
 import 'package:auto_form/form/widgets/auto_text_field.dart';
 
@@ -31,60 +32,53 @@ class MyApp extends StatelessWidget {
             AutoTextField(
               id: "first_name",
               label: "First Name",
-              triggers: const [
-                FieldTrigger.other(
-                  fieldId: "last_name",
-                  value: "ping",
-                  condition: EqualsCondition(),
-                  event: SetValueEvent("pong"),
-                ),
-                FieldTrigger.other(
-                  fieldId: "age",
-                  event: HideEvent(),
-                  value: "hide",
-                  condition: EqualsCondition(),
-                ),
-              ],
               validations: const [
-                NotEqualsValidation(value: "kld0"),
-                RegexValidation.reverse(
-                  errorMessage: "Letters only",
-                  value: r"[a-zA-Z]+",
-                ),
+                RequiredValidation(),
               ],
             ),
-            const Text("Note: Please write your full name"),
             AutoTextField(
               id: "last_name",
               label: "Last Name",
             ),
-            AutoTextField(
-              id: "age",
-              label: "Age",
+            AutoDropdownField(id: "genders", label: "Gendres", items: [
+              DropdownItem(label: "Male", value: "male"),
+              DropdownItem(label: "Female", value: "female"),
+            ]),
+            AutoCheckboxField(id: "accept", label: "Accept terms and services"),
+            AutoDateField(
+              id: "birth",
+              label: "Birth Date",
+              minimumDate: DateTime(1900),
+              maximumDate: DateTime.now(),
+              initValue: DateTime.now().toString(),
             ),
-            AutoTextField(
-              id: "first_name_again",
-              label: "First Name again",
-              validations: const [
-                EqualsValidation(value: "@first_name"),
-              ],
-              triggers: const [
-                FieldTrigger.other(
-                  fieldId: "full_name",
-                  value: "error",
-                  condition: EqualsCondition(),
-                  event: FormErrorEvent("BIG ERROR"),
-                ),
-              ],
+            AutoTimeField(
+              id: "worthTime",
+              label: "Time to go to work",
+              minimumTime: DateTime(1900),
+              maximumTime: DateTime.now(),
             ),
             AutoComputedField(
-              id: "full_name",
-              label: "Full Name",
-              fieldIdA: "@first_name",
-              fieldIdB: "@last_name",
+              id: "sum",
+              label: "Sum",
               hidden: false,
+              fields: const [
+                "@first_name",
+                "10:00",
+                "@last_name",
+              ],
               operation: AddOperation(),
-            )
+            ),
+            AutoComputedField(
+              id: "sum2",
+              label: "Another sum",
+              hidden: false,
+              fields: const [
+                "The selected duration is: ",
+                "@sum",
+              ],
+              operation: AddOperation(),
+            ),
           ],
         ),
       ),

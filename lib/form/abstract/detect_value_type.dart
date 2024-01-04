@@ -1,12 +1,8 @@
 import 'comparor.dart';
 
-const durationFormatPatern = r"^\d{2}:\d{2}(:\d{2})?$";
+const durationFormatPatern = r"^\d{1,2}(:\d{1,2}){1,3}?$";
 
 ValueType detectValueType(String value) {
-  if (value.startsWith("@")) {
-    value = value.substring(1);
-  }
-
   if (DateTime.tryParse(value) != null) {
     return ValueType.dateTime;
   }

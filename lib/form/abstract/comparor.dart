@@ -10,6 +10,8 @@ abstract class Comparor<T> {
 
   T parse(String str);
 
+  String format(T v);
+
   bool equal(T a, T b);
 
   int compare(T a, T b);
@@ -44,6 +46,9 @@ class StringComparor extends Comparor<String> {
   String parse(String str) => str;
 
   @override
+  String format(String v) => v;
+
+  @override
   String add(String a, String b) => a + b;
 
   @override
@@ -70,6 +75,9 @@ class NumberComparor extends Comparor<double> {
   double parse(String str) => double.parse(str);
 
   @override
+  String format(double v) => v.toString();
+
+  @override
   double add(double a, double b) => a + b;
 
   @override
@@ -94,6 +102,9 @@ class DateTimeComparor extends Comparor<DateTime> {
 
   @override
   DateTime parse(String str) => DateTime.parse(str);
+
+  @override
+  String format(DateTime v) => v.toIso8601String();
 
   @override
   DateTime add(DateTime a, DateTime b) => throw "Cannot add dates";
@@ -138,6 +149,16 @@ class DurationComparor extends Comparor<Duration> {
     }
 
     return d;
+  }
+
+  @override
+  String format(Duration v) {
+    var d = v.inDays;
+    var h = v.inHours % 24;
+    var m = v.inMinutes % 60;
+    var s = v.inSeconds % 60;
+
+    return "$d:$h:$m:$s";
   }
 
   @override

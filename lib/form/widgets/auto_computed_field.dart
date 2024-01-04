@@ -2,22 +2,19 @@ import 'package:auto_form/form/abstract/auto_field_state.dart';
 
 import '../abstract/comparor.dart';
 import '../abstract/detect_value_type.dart';
-import '../auto_form.dart';
 import 'package:flutter/material.dart';
 
 import '../abstract/auto_field_widget.dart';
 
 class AutoComputedField extends AutoFieldWidget {
-  final String fieldIdA;
-  final String fieldIdB;
+  final List<String> fields;
   final ComputeOperation operation;
 
   AutoComputedField({
     super.key,
     required super.id,
-    required super.label,
-    required this.fieldIdA,
-    required this.fieldIdB,
+    super.label = "",
+    required this.fields,
     required this.operation,
     super.enabled = true,
     super.validations = const [],
@@ -42,49 +39,34 @@ class _ComputedFieldWidgetState extends AutoFieldState<AutoComputedField> {
   }
 
   void attachValueListers() {
-    var targetIdA = widget.fieldIdA;
-    var targetIdB = widget.fieldIdB;
+    for (var fieldId in widget.fields) {
+      if (fieldId.startsWith("@")) {
+        fieldId = fieldId.substring(1);
+        var fieldValue = widget.form.fields[fieldId]!;
 
-    if (targetIdA.startsWith("@")) {
-      targetIdA = targetIdA.substring(1);
-      var fieldValueA = widget.form.fields[targetIdA]!;
-      fieldValueA.onValueSet.add((v) {
-        updateComputedValue();
-      });
-    }
-    if (targetIdB.startsWith("@")) {
-      targetIdB = targetIdB.substring(1);
-      var fieldValueB = widget.form.fields[targetIdB]!;
-
-      fieldValueB.onValueSet.add((v) {
-        updateComputedValue();
-      });
+        fieldValue.onValueSet.add((v) {
+          updateComputedValue();
+        });
+      }
     }
   }
 
   void updateComputedValue() {
-    var fieldValueA = widget.fieldIdA;
-    var fieldValueB = widget.fieldIdB;
+    var firstValue = widget.form.resolveValue(widget.fields.first);
 
-    if (fieldValueA.startsWith("@")) {
-      fieldValueA = fieldValueA.substring(1);
-      fieldValueA = widget.form.fields[fieldValueA]!.value;
-    }
-    if (fieldValueB.startsWith("@")) {
-      fieldValueB = fieldValueB.substring(1);
-      fieldValueB = widget.form.fields[fieldValueB]!.value;
-    }
+    var totalValue = firstValue;
 
-    if (fieldValueA.isEmpty || fieldValueB.isEmpty) {
-      widget.setValue("");
-      setState(() {});
+    for (var field in widget.fields.skip(1)) {
+      var fieldValue = widget.form.resolveValue(field);
 
-      return;
+      try {
+        totalValue = widget.operation.compute(totalValue, fieldValue);
+      } on String {
+        totalValue = "";
+      }
     }
 
-    widget.setValue(
-        widget.operation.compute(widget.form, fieldValueA, fieldValueB));
-
+    widget.setValue(totalValue);
     setState(() {});
   }
 
@@ -109,7 +91,7 @@ class _ComputedFieldWidgetState extends AutoFieldState<AutoComputedField> {
 }
 
 abstract class ComputeOperation {
-  String compute(AutoForm form, String a, String b) {
+  String compute(String a, String b) {
     var typeA = detectValueType(a);
     var typeB = detectValueType(b);
 
@@ -134,7 +116,7 @@ abstract class ComputeOperation {
 class AddOperation extends ComputeOperation {
   @override
   String operate(dynamic a, dynamic b, Comparor<dynamic> computer) =>
-      computer.add(a, b).toString();
+      computer.format(computer.add(a, b));
 }
 
 class UpperCaseOperation extends ComputeOperation {
@@ -152,7 +134,7 @@ class LowerCaseOperation extends ComputeOperation {
 class SubtractOperation extends ComputeOperation {
   @override
   String operate(dynamic a, dynamic b, Comparor<dynamic> computer) =>
-      computer.subtract(a, b).toString();
+      computer.format(computer.subtract(a, b));
 }
 
 class MultiplyOperation extends ComputeOperation {

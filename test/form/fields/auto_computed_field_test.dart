@@ -17,8 +17,7 @@ void main() {
             AutoComputedField(
               id: "full_text",
               label: "Full Name",
-              fieldIdA: "@text1",
-              fieldIdB: "@text2",
+              fields: const ["@text1", "@text2"],
               operation: AddOperation(),
             ),
           ],
