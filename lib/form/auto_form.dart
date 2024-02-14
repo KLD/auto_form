@@ -7,6 +7,8 @@ class AutoForm extends StatefulWidget {
   final List<Widget> children;
   final void Function(Map<String, String>) onSubmit;
 
+  final String submitButtonLabel = "Submit";
+
   final Map<String, AutoFieldWidget> fields;
   final EdgeInsets padding;
 
@@ -80,7 +82,7 @@ class AutoFormState extends State<AutoForm> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: submit,
-                    child: const Text("Submit"),
+                    child: Text(widget.submitButtonLabel),
                   )
                 ]
                     .map((e) => Padding(padding: widget.padding, child: e))
