@@ -22,7 +22,7 @@ class AutoForm extends StatefulWidget {
   AutoForm({
     this.children = const [],
     required this.onSubmit,
-     this.submitButtonLabel="Submit"
+     this.submitButtonLabel="Submit",
     super.key,
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
   }) : fields = {for (var e in children.whereType<AutoFieldWidget>()) e.id: e} {
