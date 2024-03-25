@@ -1,4 +1,5 @@
 import 'package:auto_form/form/abstract/value_pointer.dart';
+import 'package:auto_form/form/widgets/auto_group_field.dart';
 import 'package:flutter/material.dart';
 
 import 'abstract/auto_field_widget.dart';
@@ -9,8 +10,8 @@ class AutoForm extends StatefulWidget {
 
   final String submitButtonLabel = "Submit";
 
-  final Map<String, AutoFieldWidget> fields;
   final EdgeInsets padding;
+  final Map<String, AutoFieldWidget> fields = {};
 
   final ValuePointer<void Function(String)> setErrorPointer =
       ValuePointer((_) {});
@@ -24,11 +25,7 @@ class AutoForm extends StatefulWidget {
     required this.onSubmit,
     super.key,
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-  }) : fields = {for (var e in children.whereType<AutoFieldWidget>()) e.id: e} {
-    for (var f in fields.values) {
-      f.form = this;
-    }
-  }
+  });
 
   @override
   State<AutoForm> createState() => AutoFormState();
@@ -50,6 +47,11 @@ class AutoForm extends StatefulWidget {
 class AutoFormState extends State<AutoForm> {
   final _formKey = GlobalKey<FormState>();
   String? _errorMessage;
+
+  void registerField(AutoFieldWidget field) {
+    widget.fields[field.id] = field;
+    field.form = widget;
+  }
 
   @override
   void initState() {
@@ -102,12 +104,10 @@ class AutoFormState extends State<AutoForm> {
 
     FocusScope.of(context).unfocus();
 
-    List<AutoFieldWidget> fields =
-        widget.children.whereType<AutoFieldWidget>().toList();
-
     Map<String, String> data = {};
 
-    for (var f in fields) {
+    for (var f in widget.fields.values) {
+      if (f is AutoGroupField) continue;
       data[f.id] = f.value;
     }
 

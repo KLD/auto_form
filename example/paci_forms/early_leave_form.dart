@@ -34,8 +34,8 @@ class PACIEarlyLeaveFormState extends State<PACIEarlyLeaveForm> {
               id: "date",
               label: "Date",
               initValue: DateTime.now().toString(),
-              minimumDate: DateTime.now(),
-              maximumDate: DateTime.now().add(const Duration(days: 14)),
+              startDate: DateTime.now(),
+              endDate: DateTime.now().add(const Duration(days: 14)),
             ),
             AutoBarField(
               id: "bar",

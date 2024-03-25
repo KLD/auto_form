@@ -8,15 +8,15 @@ import '../abstract/auto_field_widget.dart';
 final dateFormatter = DateFormat('yyyy-MM-dd', ("en-us"));
 
 class AutoDateField extends AutoFieldWidget {
-  final DateTime? minimumDate;
-  final DateTime? maximumDate;
+  final DateTime? startDate;
+  final DateTime? endDate;
 
   AutoDateField({
     super.key,
     required super.id,
     required super.label,
-    required this.minimumDate,
-    required this.maximumDate,
+    this.startDate,
+    this.endDate,
     super.enabled = true,
     super.hidden = false,
     super.validations = const [],
@@ -29,15 +29,26 @@ class AutoDateField extends AutoFieldWidget {
 }
 
 class AutoDateState extends AutoFieldState<AutoDateField> {
-  DateTime? date;
+  DateTime? selected;
+
+  bool isFocused = false;
+
   @override
   void initState() {
     super.initState();
 
     if (widget.initValue.isNotEmpty) {
-      date = dateFormatter.parse(widget.initValue);
-      widget.setValue(dateFormatter.format(date!));
+      selected = dateFormatter.parse(widget.initValue);
+      widget.setValue(dateFormatter.format(selected!));
     }
+
+    widget.onValueSet.add((value) {
+      if (value.isEmpty) {
+        setState(() {
+          selected = null;
+        });
+      }
+    });
   }
 
   @override
@@ -45,44 +56,50 @@ class AutoDateState extends AutoFieldState<AutoDateField> {
     return FormField<String>(
         validator: widget.fieldValidator,
         builder: (fieldState) {
-          return InkWell(
-            onTap: () async {
-              var date = await DateTimePicker.pickDate(
-                context,
-                minimumDate: widget.minimumDate,
-                maximumDate: widget.maximumDate,
-                initialDateTime: this.date,
-              );
-
-              setState(
-                () {
-                  if (date == null) return;
-                  this.date = date;
-                  widget.setValue(dateFormatter.format(date));
-                },
-              );
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InputDecorator(
-                    isEmpty: date == null,
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: _selectDate,
+                child: InputDecorator(
+                    isEmpty: selected == null,
+                    isFocused: isFocused,
                     decoration: InputDecoration(
-                      suffixIcon: const Icon(Icons.calendar_month),
-                      labelText: widget.label,
-                    ),
-                    child: date == null
+                        labelText: widget.label,
+                        suffixIcon: selected == null ? null : buildClearIcon()),
+                    child: selected == null
                         ? const Text("")
-                        : Text(
-                            DateFormat('yyyy-MM-dd', "en-us").format(date!))),
-                if (fieldState.hasError)
-                  Text(fieldState.errorText!,
-                      style:
-                          TextStyle(color: Theme.of(context).colorScheme.error))
-              ],
-            ),
+                        : Text(DateFormat('yyyy-MM-dd', "en-us")
+                            .format(selected!))),
+              ),
+              if (fieldState.hasError)
+                Text(fieldState.errorText!,
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.error))
+            ],
           );
         });
+  }
+
+  void _selectDate() async {
+    setState(() {
+      isFocused = true;
+    });
+    var date = await DateTimePicker.pickDate(
+      context,
+      minimumDate: widget.startDate,
+      maximumDate: widget.endDate,
+      initialDateTime: selected,
+    );
+
+    setState(
+      () {
+        isFocused = false;
+        if (date == null) return;
+        selected = date;
+        widget.setValue(dateFormatter.format(date));
+      },
+    );
   }
 }

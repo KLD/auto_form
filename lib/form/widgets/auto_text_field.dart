@@ -29,9 +29,11 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
     super.initState();
 
     widget.onValueSet.clear();
+
     widget.onValueSet.add((value) {
       if (_controller.text != value) {
         _controller.text = value;
+        setState(() {});
       }
     });
   }
@@ -41,11 +43,15 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
     return TextFormField(
         controller: _controller,
         enabled: widget.isEnabled.value,
-        onChanged: widget.setValue,
+        onChanged: (value) {
+          setState(() {});
+          widget.setValue(value);
+        },
         obscureText: widget.obscure,
         decoration: InputDecoration(
           labelText: widget.label,
           errorText: errorMessage,
+          suffix: _controller.text.isEmpty ? null : buildClearIcon(),
         ),
         validator: widget.fieldValidator);
   }

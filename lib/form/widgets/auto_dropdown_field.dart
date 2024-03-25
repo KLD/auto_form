@@ -9,8 +9,8 @@ class DropdownItem {
 
   DropdownItem({
     required this.value,
-    required this.label,
-  });
+    String? label,
+  }) : label = label ?? value;
 }
 
 class AutoDropdownField extends AutoFieldWidget {
@@ -33,6 +33,15 @@ class AutoDropdownField extends AutoFieldWidget {
 
 class AutoDropdownState extends AutoFieldState<AutoDropdownField> {
   @override
+  void initState() {
+    super.initState();
+
+    widget.onValueSet.add((value) {
+      setState(() {});
+    });
+  }
+
+  @override
   Widget buildField(BuildContext context) {
     return DropdownButtonFormField<String>(
       value: widget.value.isEmpty ? null : widget.value,
@@ -44,6 +53,7 @@ class AutoDropdownState extends AutoFieldState<AutoDropdownField> {
       },
       decoration: InputDecoration(
         labelText: widget.label,
+        suffixIcon: widget.value.isEmpty ? null : buildClearIcon(),
       ),
       isExpanded: true,
       validator: widget.fieldValidator,

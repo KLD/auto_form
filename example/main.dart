@@ -4,6 +4,7 @@ import 'package:auto_form/form/abstract/field_validation.dart';
 import 'package:auto_form/form/abstract/trigger_event.dart';
 import 'package:auto_form/form/widgets/auto_dropdown_field.dart';
 import 'package:auto_form/form/widgets/auto_group_field.dart';
+import 'package:auto_form/form/widgets/auto_time_field.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_form/form/auto_form.dart';
 import 'package:auto_form/form/widgets/auto_text_field.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: AutoForm(
           onSubmit: (data) {
+            // ignore: avoid_print
             print(data);
           },
           children: [
@@ -56,7 +58,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
 
-            AutoGroupField(
+            AutoGroupField.row(
               id: "full_name",
               label: "User name",
               hidden: true,
@@ -68,9 +70,9 @@ class MyApp extends StatelessWidget {
                     RequiredValidation(),
                   ],
                 ),
-                AutoTextField(
-                  id: "last_name",
-                  label: "Last Name",
+                AutoTimeField(
+                  id: "time",
+                  label: "Time",
                 ),
               ],
             ),

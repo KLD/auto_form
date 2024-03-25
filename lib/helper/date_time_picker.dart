@@ -52,10 +52,10 @@ class DateTimePicker extends StatefulWidget {
     if (initialDateTime != null) {
       initialDateTime = DateUtils.dateOnly(initialDateTime);
 
-      if (initialDateTime.isBefore(minimumDate!)) {
+      if (minimumDate != null && initialDateTime.isBefore(minimumDate)) {
         initialDateTime = minimumDate;
       }
-      if (initialDateTime.isAfter(maximumDate!)) {
+      if (maximumDate != null && initialDateTime.isAfter(maximumDate)) {
         initialDateTime = maximumDate;
       }
     }

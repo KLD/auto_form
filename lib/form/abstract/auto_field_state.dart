@@ -1,4 +1,5 @@
 import 'package:auto_form/form/abstract/auto_field_widget.dart';
+import 'package:auto_form/form/auto_form.dart';
 import 'package:flutter/material.dart';
 
 abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
@@ -7,6 +8,13 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
   @override
   void initState() {
     super.initState();
+
+    var form = context.findAncestorStateOfType<AutoFormState>();
+    if (form == null) {
+      throw "No AutoForm found in widget tree";
+    }
+
+    form.registerField(widget);
 
     widget.onRefresh.value = () {
       if (mounted) {
@@ -45,6 +53,11 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
   }
 
   Widget buildField(BuildContext context);
+
+  Widget buildClearIcon() {
+    return GestureDetector(
+        onTap: widget.clear, child: const Icon(Icons.close, size: 16));
+  }
 
   @override
   void dispose() {
