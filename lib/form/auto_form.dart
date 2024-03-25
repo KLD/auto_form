@@ -8,7 +8,7 @@ class AutoForm extends StatefulWidget {
   final List<Widget> children;
   final void Function(Map<String, String>) onSubmit;
 
-  final String submitButtonLabel = "Submit";
+  final String submitButtonLabel;
 
   final EdgeInsets padding;
   final Map<String, AutoFieldWidget> fields = {};
@@ -23,6 +23,7 @@ class AutoForm extends StatefulWidget {
   AutoForm({
     this.children = const [],
     required this.onSubmit,
+     this.submitButtonLabel="Submit",
     super.key,
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
   });
