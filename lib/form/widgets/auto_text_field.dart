@@ -49,6 +49,7 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
         },
         obscureText: widget.obscure,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.zero,
           labelText: widget.label,
           errorText: errorMessage,
           suffix: _controller.text.isEmpty ? null : buildClearIcon(),

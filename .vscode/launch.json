@@ -9,14 +9,14 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
-      "program": "example/lib/main.dart"
+      "program": "example/main.dart"
     },
     {
       "name": "PACI early leave",
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
-      "program": "example/lib/paci_forms/early_leave_form.dart"
+      "program": "example/paci_forms/early_leave_form.dart"
     }
   ]
 }

@@ -3,6 +3,7 @@ import 'package:auto_form/form/abstract/field_trigger.dart';
 import 'package:auto_form/form/abstract/field_validation.dart';
 import 'package:auto_form/form/abstract/trigger_event.dart';
 import 'package:auto_form/form/widgets/auto_dropdown_field.dart';
+import 'package:auto_form/form/widgets/auto_file_field.dart';
 import 'package:auto_form/form/widgets/auto_group_field.dart';
 import 'package:auto_form/form/widgets/auto_time_field.dart';
 import 'package:flutter/material.dart';
@@ -31,17 +32,11 @@ class MyApp extends StatelessWidget {
           },
           children: [
             const Text("Hello World"),
-            // AutoTextField(
-            //   id: "first_name",
-            //   label: "First Name",
-            //   validations: const [
-            //     RequiredValidation(),
-            //   ],
-            // ),
-            // AutoTextField(
-            //   id: "last_name",
-            //   label: "Last Name",
-            // ),
+            AutoFileField.image(
+              id: "file",
+              label: "Image",
+              settings: const FilePickSettings(maxHeight: 100, maxWidth: 100),
+            ),
             AutoDropdownField(
               id: "genders",
               label: "Gendres",
@@ -63,16 +58,20 @@ class MyApp extends StatelessWidget {
               label: "User name",
               hidden: true,
               children: [
-                AutoTextField(
-                  id: "first_name",
-                  label: "First Name",
-                  validations: const [
-                    RequiredValidation(),
-                  ],
+                Expanded(
+                  child: AutoTextField(
+                    id: "first_name",
+                    label: "First Name",
+                    validations: const [
+                      RequiredValidation(),
+                    ],
+                  ),
                 ),
-                AutoTimeField(
-                  id: "time",
-                  label: "Time",
+                Expanded(
+                  child: AutoTimeField(
+                    id: "time",
+                    label: "Time",
+                  ),
                 ),
               ],
             ),

@@ -81,14 +81,19 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 InputDecorator(
-                    isEmpty: selected == null,
-                    isFocused: isFocused,
-                    decoration: InputDecoration(
-                        labelText: widget.label,
-                        suffixIcon: selected == null ? null : buildClearIcon()),
-                    child: selected == null
-                        ? const Text("")
-                        : Text(_timeFormatter.format(selected!))),
+                  isEmpty: selected == null,
+                  isFocused: isFocused,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.zero,
+                    labelText: widget.label,
+                    suffixIcon: selected == null ? null : buildClearIcon(),
+                    prefix: selected == null
+                        ? null
+                        : Text(
+                            _timeFormatter.format(selected!),
+                          ),
+                  ),
+                ),
                 if (fieldState.hasError)
                   Text(fieldState.errorText!,
                       style:

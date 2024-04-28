@@ -8,14 +8,15 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
   @override
   void initState() {
     super.initState();
+    setupHooks();
+  }
 
+  void setupHooks() {
     var form = context.findAncestorStateOfType<AutoFormState>();
     if (form == null) {
       throw "No AutoForm found in widget tree";
     }
-
     form.registerField(widget);
-
     widget.onRefresh.value = () {
       if (mounted) {
         setState(() {});
