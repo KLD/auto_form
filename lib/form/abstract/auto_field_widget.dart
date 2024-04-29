@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'field_trigger.dart';
-import 'field_validation.dart';
-import 'value_pointer.dart';
 
 import '../auto_form.dart';
+import 'value_pointer.dart';
 
 abstract class AutoFieldWidget extends StatefulWidget {
   final String id;

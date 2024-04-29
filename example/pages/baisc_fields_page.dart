@@ -1,8 +1,4 @@
 import 'package:auto_form/form/auto_form.dart';
-import 'package:auto_form/form/widgets/auto_date_field.dart';
-import 'package:auto_form/form/widgets/auto_dropdown_field.dart';
-import 'package:auto_form/form/widgets/auto_text_field.dart';
-import 'package:auto_form/form/widgets/auto_time_field.dart';
 import 'package:flutter/material.dart';
 
 class BasicFieldsPage extends StatelessWidget {
