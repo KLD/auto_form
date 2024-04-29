@@ -13,8 +13,7 @@ class DateTimePicker extends StatefulWidget {
       this.minimumDate,
       this.maximumDate,
       this.initialDateTime,
-      Key? key})
-      : super(key: key);
+      super.key});
 
   @override
   State<DateTimePicker> createState() => _DateTimePickerState();

@@ -37,8 +37,8 @@ abstract class AutoFieldWidget extends StatefulWidget {
     this.hidden = false,
     this.validations = const [],
     this.triggers = const [],
-    Key? key,
-  }) : super(key: key) {
+    super.key,
+  }) {
     assert(validations.where((e) => e.value == "@$id").isEmpty,
         "Field validation cannot refrence itself");
     assert(triggers.where((e) => e.fieldId == id).isEmpty,
