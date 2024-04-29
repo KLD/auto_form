@@ -1,6 +1,6 @@
 {
-    "name": "json_form",
-    "short_name": "json_form",
+    "name": "auto_form",
+    "short_name": "auto_form",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

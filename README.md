@@ -1,4 +1,4 @@
-# json_form
+# auto_form
 
 A new Flutter project.
 

@@ -1,4 +1,4 @@
-package com.example.json_form
+package com.example.auto_form
 
 import io.flutter.embedding.android.FlutterActivity
 
