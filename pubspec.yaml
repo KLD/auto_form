@@ -2,7 +2,7 @@ name: auto_form
 description: An Auto Form Builder.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 0.2.0+4
+version: 0.2.0+5
 
 environment:
   sdk: ">=3.2.3 <4.0.0"
@@ -15,7 +15,7 @@ dependencies:
   intl: ^0.18.1
   file_picker: ^8.0.0+1
   image_picker: ^1.0.8
-  syncfusion_flutter_pdfviewer: ^24.2.8
+  syncfusion_flutter_pdfviewer: ^22.2.12
 
 dev_dependencies:
   flutter_test:
