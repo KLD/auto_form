@@ -1,14 +1,5 @@
-import 'package:auto_form/form/abstract/condition.dart';
-import 'package:auto_form/form/abstract/field_trigger.dart';
-import 'package:auto_form/form/abstract/field_validation.dart';
-import 'package:auto_form/form/abstract/trigger_event.dart';
-import 'package:auto_form/form/widgets/auto_dropdown_field.dart';
-import 'package:auto_form/form/widgets/auto_file_field.dart';
-import 'package:auto_form/form/widgets/auto_group_field.dart';
-import 'package:auto_form/form/widgets/auto_time_field.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_form/form/auto_form.dart';
-import 'package:auto_form/form/widgets/auto_text_field.dart';
 
 void main() {
   runApp(const MyApp());

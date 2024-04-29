@@ -4,6 +4,18 @@ import 'package:flutter/material.dart';
 
 import 'abstract/auto_field_widget.dart';
 
+export 'abstract/auto_field_widget.dart';
+export 'widgets/auto_group_field.dart';
+export 'widgets/auto_text_field.dart';
+export 'widgets/auto_dropdown_field.dart';
+export 'widgets/auto_file_field.dart';
+export 'widgets/auto_date_field.dart';
+export 'widgets/auto_time_field.dart';
+export 'package:auto_form/form/abstract/condition.dart';
+export 'package:auto_form/form/abstract/field_trigger.dart';
+export 'package:auto_form/form/abstract/field_validation.dart';
+export 'package:auto_form/form/abstract/trigger_event.dart';
+
 class AutoForm extends StatefulWidget {
   final List<Widget> children;
   final void Function(Map<String, String>) onSubmit;
