@@ -2,7 +2,7 @@ name: auto_form
 description: An Auto Form Builder.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 0.2.0+5
+version: 0.2.0+6
 
 environment:
   sdk: ">=3.2.3 <4.0.0"

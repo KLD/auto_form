@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:auto_form/form/auto_form.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,9 +23,10 @@ class MyApp extends StatelessWidget {
           },
           children: [
             const Text("Hello World"),
-            AutoFileField.image(
+            AutoFileField(
               id: "file",
               label: "Image",
+              fileSource: const [FileSource.gallery],
               settings: const FilePickSettings(maxHeight: 100, maxWidth: 100),
             ),
             AutoDropdownField(
