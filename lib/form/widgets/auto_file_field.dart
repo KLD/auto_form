@@ -166,7 +166,14 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
     var value = files
         .map((e) => UriData.fromBytes(e.data, mimeType: e.mimeType).toString());
 
-    widget.setValue(jsonEncode(value.toList()));
+    if (value.isEmpty) {
+      widget.setValue("");
+    }
+    if (value.length == 1) {
+      widget.setValue(value.first);
+    } else {
+      widget.setValue(jsonEncode(value.toList()));
+    }
   }
 
   Widget buildPreview(FileData file) {
@@ -181,33 +188,42 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
       source = widget.fileSource.first;
     } else {
       FileSource? selectedSource;
-      var result = showBottomSheet(
+      var result = showModalBottomSheet(
           context: context,
-          builder: (_) => Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListTile(
-                      title: const Text("Gallery"),
-                      onTap: () {
-                        selectedSource = FileSource.gallery;
-                        Navigator.pop(_, FileSource.gallery);
-                      }),
-                  ListTile(
-                      title: const Text("Camera"),
-                      onTap: () {
-                        selectedSource = FileSource.camera;
-                        Navigator.pop(_, FileSource.camera);
-                      }),
-                  ListTile(
-                      title: const Text("Files"),
-                      onTap: () {
-                        selectedSource = FileSource.files;
-                        Navigator.pop(_, FileSource.files);
-                      }),
-                ],
+          enableDrag: true,
+          builder: (_) => GestureDetector(
+                onTap: Navigator.of(context).pop,
+                child: SafeArea(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (widget.fileSource.contains(FileSource.gallery))
+                        ListTile(
+                            title: const Text("Gallery"),
+                            onTap: () {
+                              selectedSource = FileSource.gallery;
+                              Navigator.pop(_, FileSource.gallery);
+                            }),
+                      if (widget.fileSource.contains(FileSource.camera))
+                        ListTile(
+                            title: const Text("Camera"),
+                            onTap: () {
+                              selectedSource = FileSource.camera;
+                              Navigator.pop(_, FileSource.camera);
+                            }),
+                      if (widget.fileSource.contains(FileSource.files))
+                        ListTile(
+                            title: const Text("Files"),
+                            onTap: () {
+                              selectedSource = FileSource.files;
+                              Navigator.pop(_, FileSource.files);
+                            }),
+                    ],
+                  ),
+                ),
               ));
 
-      await result.closed;
+      await result;
       if (selectedSource == null) {
         return;
       }
