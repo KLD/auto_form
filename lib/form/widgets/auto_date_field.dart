@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../helper/date_time_picker.dart';
 import '../abstract/auto_field_state.dart';
 import '../abstract/auto_field_widget.dart';
-
-final dateFormatter = DateFormat('yyyy-MM-dd', ("en-us"));
 
 class AutoDateField extends AutoFieldWidget {
   final DateTime? startDate;
@@ -38,8 +35,8 @@ class AutoDateState extends AutoFieldState<AutoDateField> {
     super.initState();
 
     if (widget.initValue.isNotEmpty) {
-      selected = dateFormatter.parse(widget.initValue);
-      widget.setValue(dateFormatter.format(selected!));
+      selected = parseDateTime(widget.initValue);
+      widget.setValue(formatDate(selected!));
     }
 
     widget.onValueSet.add((value) {
@@ -70,8 +67,7 @@ class AutoDateState extends AutoFieldState<AutoDateField> {
                         suffixIcon: selected == null ? null : buildClearIcon()),
                     child: selected == null
                         ? const Text("")
-                        : Text(DateFormat('yyyy-MM-dd', "en-us")
-                            .format(selected!))),
+                        : Text(formatDate(selected!))),
               ),
               if (fieldState.hasError)
                 Text(fieldState.errorText!,
@@ -98,8 +94,27 @@ class AutoDateState extends AutoFieldState<AutoDateField> {
         isFocused = false;
         if (date == null) return;
         selected = date;
-        widget.setValue(dateFormatter.format(date));
+        widget.setValue(formatDate(date));
       },
     );
   }
+}
+
+DateTime parseDateTime(String value) {
+  // validate string
+  if (value.isEmpty) {
+    throw "Empty string";
+  }
+// validate format regex 2000-1-01
+  if (!RegExp(r"^\d{4}-\d{1,2}-\d{1,2}$").hasMatch(value)) {
+    throw "Invalid date format. Must be yyyy-mm-dd";
+  }
+
+  var tokens = value.split("-");
+  return DateTime(
+      int.parse(tokens[0]), int.parse(tokens[1]), int.parse(tokens[2]));
+}
+
+String formatDate(DateTime date) {
+  return "${date.year}-${date.month}-${date.day}";
 }

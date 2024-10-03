@@ -1,12 +1,8 @@
 import 'package:auto_form/form/abstract/auto_field_state.dart';
+import 'package:flutter/material.dart';
 
 import '../../helper/date_time_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import '../abstract/auto_field_widget.dart';
-
-final _timeFormatter = DateFormat('HH:mm', "en-us");
 
 class AutoTimeField extends AutoFieldWidget {
   final DateTime? startTime;
@@ -37,8 +33,8 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
     super.initState();
 
     if (widget.initValue.isNotEmpty) {
-      selected = _timeFormatter.parse(widget.initValue);
-      widget.setValue(_timeFormatter.format(selected!));
+      selected = parseTime(widget.initValue);
+      widget.setValue(formatTime(selected!));
     }
 
     widget.onValueSet.add((value) {
@@ -72,7 +68,7 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
                   isFocused = false;
                   if (date == null) return;
                   selected = date;
-                  widget.setValue(_timeFormatter.format(date));
+                  widget.setValue(formatTime(date));
                 },
               );
             },
@@ -90,7 +86,7 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
                     prefix: selected == null
                         ? null
                         : Text(
-                            _timeFormatter.format(selected!),
+                            formatTime(selected!),
                           ),
                   ),
                 ),
@@ -103,4 +99,20 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
           );
         });
   }
+}
+
+DateTime parseTime(String value) {
+  if (value.isEmpty) {
+    throw "Empty string";
+  }
+  if (!RegExp(r"^\d{1,2}:\d{1,2}$").hasMatch(value)) {
+    throw "Invalid time format. Must be hh:mm";
+  }
+
+  var tokens = value.split(":");
+  return DateTime(int.parse(tokens[0]), int.parse(tokens[1]));
+}
+
+String formatTime(DateTime date) {
+  return "${date.hour}:${date.minute}";
 }

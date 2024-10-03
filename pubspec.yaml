@@ -11,8 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
-  intl: ^0.18.1
   file_picker: ^8.0.0+1
   image_picker: ^1.0.8
   syncfusion_flutter_pdfviewer: ^22.2.12
