@@ -80,7 +80,6 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
                   isEmpty: selected == null,
                   isFocused: isFocused,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.zero,
                     labelText: widget.label,
                     suffixIcon: selected == null ? null : buildClearIcon(),
                     prefix: selected == null
