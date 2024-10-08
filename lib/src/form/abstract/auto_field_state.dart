@@ -1,4 +1,4 @@
-import 'package:auto_form/form/auto_form.dart';
+import 'package:auto_form/src/form/auto_form.dart';
 import 'package:flutter/material.dart';
 
 abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {

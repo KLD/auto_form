@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class DateTimePicker extends StatefulWidget {
   final DateTime? minimumDate;
@@ -99,7 +99,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
         child: Container(
           height: 300,
           decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               boxShadow: [

@@ -1,20 +1,21 @@
-import 'package:auto_form/form/abstract/value_pointer.dart';
-import 'package:auto_form/form/widgets/auto_group_field.dart';
+import 'package:auto_form/src/form/abstract/value_pointer.dart';
+import 'package:auto_form/src/form/widgets/auto_group_field.dart';
 import 'package:flutter/material.dart';
 
 import 'abstract/auto_field_widget.dart';
 
+export 'package:auto_form/src/form/abstract/condition.dart';
+export 'package:auto_form/src/form/abstract/field_trigger.dart';
+export 'package:auto_form/src/form/abstract/field_validation.dart';
+export 'package:auto_form/src/form/abstract/trigger_event.dart';
+
 export 'abstract/auto_field_widget.dart';
-export 'widgets/auto_group_field.dart';
-export 'widgets/auto_text_field.dart';
+export 'widgets/auto_date_field.dart';
 export 'widgets/auto_dropdown_field.dart';
 export 'widgets/auto_file_field.dart';
-export 'widgets/auto_date_field.dart';
+export 'widgets/auto_group_field.dart';
+export 'widgets/auto_text_field.dart';
 export 'widgets/auto_time_field.dart';
-export 'package:auto_form/form/abstract/condition.dart';
-export 'package:auto_form/form/abstract/field_trigger.dart';
-export 'package:auto_form/form/abstract/field_validation.dart';
-export 'package:auto_form/form/abstract/trigger_event.dart';
 
 class AutoForm extends StatefulWidget {
   final List<Widget> children;

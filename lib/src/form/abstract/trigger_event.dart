@@ -1,4 +1,4 @@
-import 'package:auto_form/form/abstract/auto_field_widget.dart';
+import 'package:auto_form/src/form/abstract/auto_field_widget.dart';
 
 abstract class TriggerEvent {
   const TriggerEvent();

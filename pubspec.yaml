@@ -1,6 +1,7 @@
 name: auto_form
 description: An Auto Form Builder.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+repository: "https://www.github.com/kld/auto_form"
 
 version: 0.2.0+6
 

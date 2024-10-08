@@ -1,5 +1,5 @@
-import 'package:auto_form/form/auto_form.dart';
-import 'package:auto_form/form/widgets/auto_computed_field.dart';
+import 'package:auto_form/src/form/auto_form.dart';
+import 'package:auto_form/src/form/widgets/auto_computed_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

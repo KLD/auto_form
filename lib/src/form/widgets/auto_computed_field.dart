@@ -1,10 +1,9 @@
-import 'package:auto_form/form/abstract/auto_field_state.dart';
-
-import '../abstract/comparor.dart';
-import '../abstract/detect_value_type.dart';
+import 'package:auto_form/src/form/abstract/auto_field_state.dart';
 import 'package:flutter/material.dart';
 
 import '../abstract/auto_field_widget.dart';
+import '../abstract/comparor.dart';
+import '../abstract/detect_value_type.dart';
 
 class AutoComputedField extends AutoFieldWidget {
   final List<String> fields;

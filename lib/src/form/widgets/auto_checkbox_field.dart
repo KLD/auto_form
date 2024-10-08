@@ -1,4 +1,4 @@
-import 'package:auto_form/form/abstract/auto_field_state.dart';
+import 'package:auto_form/src/form/abstract/auto_field_state.dart';
 import 'package:flutter/material.dart';
 
 import '../abstract/auto_field_widget.dart';
