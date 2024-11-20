@@ -1,4 +1,4 @@
-import 'package:auto_form/src/form/auto_form.dart';
+import 'package:auto_form_plus/src/form/auto_form.dart';
 import 'package:flutter/material.dart';
 
 class BasicFieldsPage extends StatelessWidget {

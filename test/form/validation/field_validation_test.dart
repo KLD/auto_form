@@ -1,5 +1,5 @@
-import 'package:auto_form/src/form/abstract/condition.dart';
-import 'package:auto_form/src/form/abstract/field_validation.dart';
+import 'package:auto_form_plus/src/form/abstract/condition.dart';
+import 'package:auto_form_plus/src/form/abstract/field_validation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

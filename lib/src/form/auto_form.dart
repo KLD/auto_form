@@ -1,13 +1,13 @@
-import 'package:auto_form/src/form/abstract/value_pointer.dart';
-import 'package:auto_form/src/form/widgets/auto_group_field.dart';
+import 'package:auto_form_plus/src/form/abstract/value_pointer.dart';
+import 'package:auto_form_plus/src/form/widgets/auto_group_field.dart';
 import 'package:flutter/material.dart';
 
 import 'abstract/auto_field_widget.dart';
 
-export 'package:auto_form/src/form/abstract/condition.dart';
-export 'package:auto_form/src/form/abstract/field_trigger.dart';
-export 'package:auto_form/src/form/abstract/field_validation.dart';
-export 'package:auto_form/src/form/abstract/trigger_event.dart';
+export 'package:auto_form_plus/src/form/abstract/condition.dart';
+export 'package:auto_form_plus/src/form/abstract/field_trigger.dart';
+export 'package:auto_form_plus/src/form/abstract/field_validation.dart';
+export 'package:auto_form_plus/src/form/abstract/trigger_event.dart';
 
 export 'abstract/auto_field_widget.dart';
 export 'widgets/auto_date_field.dart';

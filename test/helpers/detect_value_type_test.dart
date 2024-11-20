@@ -1,5 +1,5 @@
-import 'package:auto_form/src/form/abstract/comparor.dart';
-import 'package:auto_form/src/form/abstract/detect_value_type.dart';
+import 'package:auto_form_plus/src/form/abstract/comparor.dart';
+import 'package:auto_form_plus/src/form/abstract/detect_value_type.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
