@@ -5,9 +5,11 @@
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
 
 # IntelliJ related
@@ -44,3 +46,24 @@ app.*.map.json
 /android/app/release
 
 coverage/
+ios/build/ios/XCBuildData/PIFCache/project/PROJECT@v11_mod=3cfa9855bf367453ba0687dd8fa8f8fa_hash=bfdfe7dc352907fc980b868725387e98plugins=1OJSG6M1FOV3XYQCBH7Z29RZ0FPR9XDE1-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=0a2fc8817be7739c4d19d76020275ae0-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=0c7027c6328c90a1f9f2ba32721ea574-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=1d2b0a6958b29d504ff829854c51b618-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=5ab9e3808ea8aa907ac12f0e2c0311fd-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=5d41c695557152f3aa9f7f0142fed25a-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=8c296386d92638ec0239e4892591e398-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=0543d95295ec49eba877bb6c846ecd5a-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=03083e472173f83f3c582b72d438f630-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=5300edbfc8dfc8db4b4f534b091e46b9-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=5561ed7a0cd4dda9b1385693d768a681-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=7844d73e14ce472fd4af54a97e1d3fb7-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=76075a108301ddef7820dc056e27062b-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=52544987b54b994b513c15fd5cf1ccb9-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=3729664476de949bda87b37c7181eb60-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=b5c169e11f6a031451752d52869faf30-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=b6ae739becd88092afe51979c866ecd4-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=ce0c08fe93d6e0ccc984c0baf57b7f0e-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=de49029670d816fec908fdcfeb7bc92a-json
+ios/build/ios/XCBuildData/PIFCache/target/TARGET@v11_hash=f54b94df0436a81d155408e4d9fd4ce1-json
+ios/build/ios/XCBuildData/PIFCache/workspace/WORKSPACE@v11_hash=(null)_subobjects=805948addfc9d58ef70d1c4c26541524-json
