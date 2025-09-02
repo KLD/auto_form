@@ -1,4 +1,5 @@
-import 'auto_field_widget.dart';
+import 'package:auto_form_plus/src/form/abstract/auto_field_state.dart';
+
 import 'condition.dart';
 
 class FieldValidation {
@@ -15,7 +16,7 @@ class FieldValidation {
     required this.condition,
   });
 
-  bool validate({required AutoFieldWidget field, required String value}) {
+  bool validate({required AutoFieldState field, required String value}) {
     String targetValue = field.form.resolveValue(value);
 
     return condition(value, targetValue);

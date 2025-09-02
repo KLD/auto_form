@@ -8,7 +8,7 @@ class ExampleHomePage extends StatelessWidget {
   const ExampleHomePage({super.key});
 
   // Define the list of form navigation items
-  static final List<(String label, Widget)> _formItems = const [
+  static final List<(String label, Widget)> _formItems = [
     ('Login Form', LoginFormExample()),
     ('Register Form', RegisterFormExample()),
     ('Profile Form', ProfileFormExample()),

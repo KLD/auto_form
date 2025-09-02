@@ -23,19 +23,19 @@ class _DynamicCheckboxFieldState extends AutoFieldState<AutoCheckboxField> {
   void initState() {
     super.initState();
 
-    widget.setValue((widget.initValue == true.toString()).toString());
+    setValue((widget.initValue == true.toString()).toString());
   }
 
   @override
   Widget buildField(BuildContext context) {
     return CheckboxListTile(
-        value: widget.value == true.toString(),
+        value: value == true.toString(),
         title: Text(widget.label),
-        enabled: widget.isEnabled.value,
+        enabled: isEnabled,
         controlAffinity: ListTileControlAffinity.leading,
-        onChanged: (_) {
+        onChanged: (v) {
           setState(() {
-            widget.setValue(_.toString());
+            setValue(v.toString());
           });
         });
   }

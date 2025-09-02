@@ -36,7 +36,7 @@ class AutoDropdownState extends AutoFieldState<AutoDropdownField> {
   void initState() {
     super.initState();
 
-    widget.onValueSet.add((value) {
+    onValueSet.add((value) {
       setState(() {});
     });
   }
@@ -44,19 +44,19 @@ class AutoDropdownState extends AutoFieldState<AutoDropdownField> {
   @override
   Widget buildField(BuildContext context) {
     return DropdownButtonFormField<String>(
-      value: widget.value.isEmpty ? null : widget.value,
+      value: value.isEmpty ? null : value,
       items: widget.items
           .map((e) => DropdownMenuItem(value: e.value, child: Text(e.label)))
           .toList(),
       onChanged: (value) {
-        widget.setValue(value!);
+        setValue(value!);
       },
       decoration: InputDecoration(
         labelText: widget.label,
-        suffixIcon: widget.value.isEmpty ? null : buildClearIcon(),
+        suffixIcon: value.isEmpty ? null : buildClearIcon(),
       ),
       isExpanded: true,
-      validator: widget.fieldValidator,
+      validator: fieldValidator,
     );
   }
 }

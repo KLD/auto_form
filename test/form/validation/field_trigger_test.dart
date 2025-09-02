@@ -39,20 +39,18 @@ void main() {
 
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
-    expect(text2State.widget.isHidden.value, false,
-        reason: "Should be visibale");
+    expect(text2State.isHidden, false, reason: "Should be visibale");
 
-    text1State.widget.setValue("Khaled");
+    text1State.setValue("Khaled");
     await tester.pump();
 
-    expect(text2State.widget.isHidden.value, true,
-        reason: "Should be hidden from trigger");
+    expect(text2State.isHidden, true, reason: "Should be hidden from trigger");
     expect(find.byType(TextFormField), findsOneWidget);
 
-    text1State.widget.setValue("");
+    text1State.setValue("");
     await tester.pump();
 
-    expect(text2State.widget.isHidden.value, false,
+    expect(text2State.isHidden, false,
         reason: "Should be visibale from trigger");
     expect(find.byType(TextFormField), findsNWidgets(2));
   });
@@ -89,21 +87,19 @@ void main() {
 
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
 
-    text1State.widget.setValue("Khaled");
+    text1State.setValue("Khaled");
 
     await tester.pump();
 
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
-    expect(text2State.widget.isHidden.value, false,
-        reason: "Should be visibale");
+    expect(text2State.isHidden, false, reason: "Should be visibale");
 
     expect(find.byType(TextFormField), findsNWidgets(2));
 
-    text1State.widget.setValue("");
+    text1State.setValue("");
     await tester.pump();
 
-    expect(text2State.widget.isHidden.value, true,
-        reason: "Should be hidden from trigger");
+    expect(text2State.isHidden, true, reason: "Should be hidden from trigger");
     expect(find.byType(TextFormField), findsOneWidget);
   });
 
@@ -137,19 +133,18 @@ void main() {
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
 
-    expect(text2State.widget.isEnabled.value, true,
+    expect(text2State.isEnabled, true,
         reason: "Should be enabled before trigger");
-    text1State.widget.setValue("Khaled");
+    text1State.setValue("Khaled");
 
     await tester.pump();
 
-    expect(text2State.widget.isEnabled.value, false,
-        reason: "Should be disabled");
+    expect(text2State.isEnabled, false, reason: "Should be disabled");
 
-    text1State.widget.setValue("");
+    text1State.setValue("");
     await tester.pump();
 
-    expect(text2State.widget.isEnabled.value, true,
+    expect(text2State.isEnabled, true,
         reason: "Should be enabled after trigger");
   });
 
@@ -187,19 +182,18 @@ void main() {
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
 
-    expect(text2State.widget.isEnabled.value, false,
+    expect(text2State.isEnabled, false,
         reason: "Should be disabled bedfore trigger");
 
-    text1State.widget.setValue("Khaled");
+    text1State.setValue("Khaled");
     await tester.pump();
 
-    expect(text2State.widget.isEnabled.value, true,
-        reason: "Should be enabled");
+    expect(text2State.isEnabled, true, reason: "Should be enabled");
 
-    text1State.widget.setValue("");
+    text1State.setValue("");
     await tester.pump();
 
-    expect(text2State.widget.isEnabled.value, false,
+    expect(text2State.isEnabled, false,
         reason: "Should be disabled after trigger");
   });
 
@@ -238,19 +232,17 @@ void main() {
     var text1State = tester.state<AutoTextFieldState>(find.byKey(text1Key));
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
 
-    expect(text2State.widget.value.isNotEmpty, true,
-        reason: "Should be initValue");
+    expect(text2State.value.isNotEmpty, true, reason: "Should be initValue");
     form.setValue("text_1", "Khaled");
 
     await tester.pump();
 
-    expect(text2State.widget.value.isEmpty, true, reason: "Should be empty");
+    expect(text2State.value.isEmpty, true, reason: "Should be empty");
 
-    text1State.widget.setValue("");
+    text1State.setValue("");
     await tester.pump();
 
-    expect(text2State.widget.value.isEmpty, true,
-        reason: "Should still be empty");
+    expect(text2State.value.isEmpty, true, reason: "Should still be empty");
   });
 
   testWidgets("AutoText trigger clear on initValue", (tester) async {
@@ -288,6 +280,6 @@ void main() {
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
 
     await tester.pump();
-    expect(text2State.widget.value.isEmpty, true, reason: "Should be empty");
+    expect(text2State.value.isEmpty, true, reason: "Should be empty");
   });
 }

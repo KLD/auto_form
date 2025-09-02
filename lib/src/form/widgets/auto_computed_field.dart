@@ -32,31 +32,33 @@ class _ComputedFieldWidgetState extends AutoFieldState<AutoComputedField> {
 
     attachValueListers();
 
-    widget.onRefresh.value = () {
-      updateComputedValue();
-    };
+    //! TODO test
+    // widget.onRefresh.value = () {
+    //   updateComputedValue();
+    // };
   }
 
   void attachValueListers() {
     for (var fieldId in widget.fields) {
       if (fieldId.startsWith("@")) {
         fieldId = fieldId.substring(1);
-        var fieldValue = widget.form.fields[fieldId]!;
+        var fieldValue = form.findFieldById(fieldId);
 
-        fieldValue.onValueSet.add((v) {
-          updateComputedValue();
-        });
+        //! TODO test
+        // fieldValue.onValueSet.add((v) {
+        //   updateComputedValue();
+        // });
       }
     }
   }
 
   void updateComputedValue() {
-    var firstValue = widget.form.resolveValue(widget.fields.first);
+    var firstValue = form.resolveValue(widget.fields.first);
 
     var totalValue = firstValue;
 
     for (var field in widget.fields.skip(1)) {
-      var fieldValue = widget.form.resolveValue(field);
+      var fieldValue = form.resolveValue(field);
 
       try {
         totalValue = widget.operation.compute(totalValue, fieldValue);
@@ -65,7 +67,7 @@ class _ComputedFieldWidgetState extends AutoFieldState<AutoComputedField> {
       }
     }
 
-    widget.setValue(totalValue);
+    setValue(totalValue);
     setState(() {});
   }
 
@@ -79,7 +81,7 @@ class _ComputedFieldWidgetState extends AutoFieldState<AutoComputedField> {
               decoration: InputDecoration(
                 labelText: widget.label,
               ),
-              child: Text(widget.value),
+              child: Text(value),
             ),
             if (state.hasError)
               Text(state.errorText!,

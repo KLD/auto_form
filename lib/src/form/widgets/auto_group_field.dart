@@ -49,16 +49,6 @@ class AutoGroupField extends AutoFieldWidget {
             children: children);
 
   @override
-  String get value {
-    return "";
-  }
-
-  @override
-  void setValue(String value) {
-    throw "Cannot force value in AutoGroupField";
-  }
-
-  @override
   State<StatefulWidget> createState() => AutoGroupState();
 }
 
@@ -76,5 +66,15 @@ class AutoGroupState extends AutoFieldState<AutoGroupField> {
     }
 
     return widget.child;
+  }
+
+  @override
+  String get value {
+    return "";
+  }
+
+  @override
+  set value(String value) {
+    throw "Cannot force value in AutoGroupField";
   }
 }

@@ -38,9 +38,9 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
   void initState() {
     super.initState();
 
-    widget.onValueSet.clear();
+    onValueSet.clear();
 
-    widget.onValueSet.add((value) {
+    onValueSet.add((value) {
       if (_controller.text != value) {
         _controller.text = value;
         setState(() {});
@@ -52,14 +52,14 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
   Widget buildField(BuildContext context) {
     return TextFormField(
         controller: _controller,
-        enabled: widget.isEnabled.value,
+        enabled: isEnabled,
         obscureText: widget.obscure && isVisibilityToggled,
         keyboardType: widget.keyboardType,
         maxLines: widget.maxLines,
         minLines: widget.minLines,
         onChanged: (value) {
           setState(() {});
-          widget.setValue(value);
+          setValue(value);
         },
         decoration: InputDecoration(
             labelText: widget.label,
@@ -71,7 +71,7 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
                 if (_controller.text.isNotEmpty) buildClearIcon(),
               ],
             )),
-        validator: widget.fieldValidator);
+        validator: fieldValidator);
   }
 
   Widget buildVisibilityToggleIconButton() {

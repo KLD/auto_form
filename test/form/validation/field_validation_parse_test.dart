@@ -28,7 +28,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("string");
+      textState.setValue("string");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -60,7 +60,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10");
+      textState.setValue("10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -92,7 +92,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2020-12-30");
+      textState.setValue("2020-12-30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -124,7 +124,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10:10");
+      textState.setValue("10:10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -159,7 +159,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("string");
+      textState.setValue("string");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -191,7 +191,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10");
+      textState.setValue("10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -223,7 +223,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2020-12-30");
+      textState.setValue("2020-12-30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -255,7 +255,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10:10");
+      textState.setValue("10:10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -288,7 +288,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("9");
+      textState.setValue("9");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -321,7 +321,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10");
+      textState.setValue("10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -354,7 +354,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("11");
+      textState.setValue("11");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -387,7 +387,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("9");
+      textState.setValue("9");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -420,7 +420,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10");
+      textState.setValue("10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -453,7 +453,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("11");
+      textState.setValue("11");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -486,7 +486,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("15");
+      textState.setValue("15");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -519,7 +519,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10");
+      textState.setValue("10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -552,7 +552,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("9");
+      textState.setValue("9");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -584,7 +584,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10");
+      textState.setValue("10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -617,7 +617,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("15");
+      textState.setValue("15");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -652,7 +652,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("string");
+      textState.setValue("string");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -684,7 +684,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10");
+      textState.setValue("10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -716,7 +716,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-10");
+      textState.setValue("2000-1-10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -748,7 +748,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10:10");
+      textState.setValue("10:10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -781,7 +781,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-9");
+      textState.setValue("2000-1-9");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -813,7 +813,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-09");
+      textState.setValue("2000-1-09");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -846,7 +846,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-10");
+      textState.setValue("2000-1-10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -879,7 +879,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-11");
+      textState.setValue("2000-1-11");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -912,7 +912,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-09");
+      textState.setValue("2000-1-09");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -945,7 +945,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-10");
+      textState.setValue("2000-1-10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -978,7 +978,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-11");
+      textState.setValue("2000-1-11");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1011,7 +1011,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-11");
+      textState.setValue("2000-1-11");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1044,7 +1044,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-10");
+      textState.setValue("2000-1-10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1077,7 +1077,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-09");
+      textState.setValue("2000-1-09");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1109,7 +1109,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-10");
+      textState.setValue("2000-1-10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1142,7 +1142,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-11");
+      textState.setValue("2000-1-11");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1177,7 +1177,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("string");
+      textState.setValue("string");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1209,7 +1209,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("10");
+      textState.setValue("10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1241,7 +1241,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("2000-1-10");
+      textState.setValue("2000-1-10");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1273,7 +1273,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:30");
+      textState.setValue("12:30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1305,7 +1305,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("00:12:30");
+      textState.setValue("00:12:30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1338,7 +1338,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:30:01");
+      textState.setValue("12:30:01");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1370,7 +1370,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:29");
+      textState.setValue("12:29");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1402,7 +1402,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:30");
+      textState.setValue("12:30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1434,7 +1434,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:31");
+      textState.setValue("12:31");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1466,7 +1466,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:29");
+      textState.setValue("12:29");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1499,7 +1499,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:30");
+      textState.setValue("12:30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1532,7 +1532,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:30:01");
+      textState.setValue("12:30:01");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1565,7 +1565,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:31");
+      textState.setValue("12:31");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1598,7 +1598,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:30");
+      textState.setValue("12:30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1631,7 +1631,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:29");
+      textState.setValue("12:29");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1663,7 +1663,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:30");
+      textState.setValue("12:30");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 
@@ -1697,7 +1697,7 @@ void main() {
       var textState =
           tester.state<AutoTextFieldState>(find.byType(AutoTextField));
 
-      textState.widget.setValue("12:31");
+      textState.setValue("12:31");
       var state = tester.state<AutoFormState>(find.byType(AutoForm));
       state.submit();
 

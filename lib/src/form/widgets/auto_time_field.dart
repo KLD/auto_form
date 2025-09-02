@@ -34,10 +34,10 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
 
     if (widget.initValue.isNotEmpty) {
       selected = parseTime(widget.initValue);
-      widget.setValue(formatTime(selected!));
+      setValue(formatTime(selected!));
     }
 
-    widget.onValueSet.add((value) {
+    onValueSet.add((value) {
       if (value.isEmpty) {
         setState(() {
           selected = null;
@@ -49,7 +49,7 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
   @override
   Widget buildField(BuildContext context) {
     return FormField<String>(
-        validator: widget.fieldValidator,
+        validator: fieldValidator,
         builder: (fieldState) {
           return GestureDetector(
             onTap: () async {
@@ -68,7 +68,7 @@ class _AutoTimeFieldState extends AutoFieldState<AutoTimeField> {
                   isFocused = false;
                   if (date == null) return;
                   selected = date;
-                  widget.setValue(formatTime(date));
+                  setValue(formatTime(date));
                 },
               );
             },

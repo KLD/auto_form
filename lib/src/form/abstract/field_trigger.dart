@@ -1,4 +1,5 @@
-import 'auto_field_widget.dart';
+import 'package:auto_form_plus/src/form/abstract/auto_field_state.dart';
+
 import 'condition.dart';
 import 'trigger_event.dart';
 
@@ -30,13 +31,14 @@ class FieldTrigger {
 
   /// Testers condition given target value with field value. Applies or reverses trigger based on result.
   void handleTrigger(
-      {required AutoFieldWidget field, required String fieldValue}) {
+      {required AutoFieldState field, required String fieldValue}) {
     String targetValue = field.form.resolveValue(value);
 
     var result = condition(fieldValue, targetValue);
-    var targetField = fieldId == null ? field : field.form.fields[fieldId]!;
+    var targetField =
+        fieldId == null ? field : field.form.findFieldById(fieldId!);
 
-    if (targetField.mounted.value) {
+    if (targetField.mounted) {
       _handleEvent(result, event, targetField);
     } else {
       targetField.postponedTriggers
@@ -45,7 +47,7 @@ class FieldTrigger {
   }
 
   void _handleEvent(
-      bool result, TriggerEvent event, AutoFieldWidget targetField) {
+      bool result, TriggerEvent event, AutoFieldState targetField) {
     if (result) {
       event.apply(targetField);
     } else {

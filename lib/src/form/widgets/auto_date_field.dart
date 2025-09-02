@@ -36,10 +36,10 @@ class AutoDateState extends AutoFieldState<AutoDateField> {
 
     if (widget.initValue.isNotEmpty) {
       selected = parseDateTime(widget.initValue);
-      widget.setValue(formatDate(selected!));
+      setValue(formatDate(selected!));
     }
 
-    widget.onValueSet.add((value) {
+    onValueSet.add((value) {
       if (value.isEmpty) {
         setState(() {
           selected = null;
@@ -51,7 +51,7 @@ class AutoDateState extends AutoFieldState<AutoDateField> {
   @override
   Widget buildField(BuildContext context) {
     return FormField<String>(
-        validator: widget.fieldValidator,
+        validator: fieldValidator,
         builder: (fieldState) {
           return Column(
             mainAxisSize: MainAxisSize.min,
@@ -94,7 +94,7 @@ class AutoDateState extends AutoFieldState<AutoDateField> {
         isFocused = false;
         if (date == null) return;
         selected = date;
-        widget.setValue(formatDate(date));
+        setValue(formatDate(date));
       },
     );
   }

@@ -1,3 +1,4 @@
+import 'package:auto_form_plus/src/form/abstract/auto_field_state.dart';
 import 'package:flutter/material.dart';
 
 import '../abstract/auto_field_widget.dart';
@@ -27,7 +28,7 @@ class AutoBarField extends AutoFieldWidget {
   State<AutoBarField> createState() => _DynamicBarFieldState();
 }
 
-class _DynamicBarFieldState extends State<AutoBarField>
+class _DynamicBarFieldState extends AutoFieldState<AutoBarField>
     with SingleTickerProviderStateMixin {
   late AnimationController barAnimationController;
   late Animation<double> barAnimation;
@@ -39,7 +40,7 @@ class _DynamicBarFieldState extends State<AutoBarField>
     var initProgress = int.tryParse(widget.initValue);
     initProgress ??= 0;
 
-    widget.setValue(initProgress.toString());
+    setValue(initProgress.toString());
     barAnimationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1000));
 
@@ -54,7 +55,7 @@ class _DynamicBarFieldState extends State<AutoBarField>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: InputDecorator(

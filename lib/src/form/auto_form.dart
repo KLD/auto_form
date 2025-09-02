@@ -1,8 +1,6 @@
-import 'package:auto_form_plus/src/form/abstract/value_pointer.dart';
+import 'package:auto_form_plus/src/form/abstract/auto_field_state.dart';
 import 'package:auto_form_plus/src/form/widgets/auto_group_field.dart';
 import 'package:flutter/material.dart';
-
-import 'abstract/auto_field_widget.dart';
 
 export 'package:auto_form_plus/src/form/abstract/condition.dart';
 export 'package:auto_form_plus/src/form/abstract/field_trigger.dart';
@@ -24,16 +22,8 @@ class AutoForm extends StatefulWidget {
   final String submitButtonLabel;
 
   final EdgeInsets padding;
-  final Map<String, AutoFieldWidget> fields = {};
 
-  final ValuePointer<void Function(String)> setErrorPointer =
-      ValuePointer((_) {});
-  final ValuePointer<void Function()> clearErrorPointer = ValuePointer(() {});
-
-  void setError(String error) => setErrorPointer.value(error);
-  void clearError() => clearErrorPointer.value();
-
-  AutoForm({
+  const AutoForm({
     this.children = const [],
     required this.onSubmit,
     this.submitButtonLabel = "Submit",
@@ -43,48 +33,34 @@ class AutoForm extends StatefulWidget {
 
   @override
   State<AutoForm> createState() => AutoFormState();
-
-  String resolveValue(String value) {
-    if (value.startsWith("@")) {
-      var targetField = _findFieldById(value.substring(1));
-
-      return targetField.value;
-    }
-    return value;
-  }
-
-  AutoFieldWidget _findFieldById(String id) {
-    return children.whereType<AutoFieldWidget>().firstWhere((e) => e.id == id);
-  }
 }
 
 class AutoFormState extends State<AutoForm> {
   final _formKey = GlobalKey<FormState>();
   String? _errorMessage;
 
-  void registerField(AutoFieldWidget field) {
-    widget.fields[field.id] = field;
-    field.formPointer.value = widget;
+  final Map<String, AutoFieldState> _fieldStates = {};
+
+  String resolveValue(String value) {
+    if (value.startsWith("@")) {
+      var targetField = findFieldById(value.substring(1));
+
+      return targetField.value;
+    }
+    return value;
+  }
+
+  AutoFieldState findFieldById(String id) {
+    return _fieldStates[id]!;
+  }
+
+  void registerField(AutoFieldState field) {
+    _fieldStates[field.widget.id] = field;
   }
 
   @override
   void initState() {
     super.initState();
-    widget.setErrorPointer.value = setFromError;
-    widget.clearErrorPointer.value = clearFormError;
-  }
-
-  @override
-  void didUpdateWidget(covariant AutoForm oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    for (var f in oldWidget.fields.entries) {
-      widget.fields[f.key] = f.value;
-    }
-
-    for (var field in widget.fields.values) {
-      field.formPointer.value = widget;
-    }
   }
 
   @override
@@ -133,72 +109,56 @@ class AutoFormState extends State<AutoForm> {
 
     Map<String, String> data = {};
 
-    for (var f in widget.fields.values) {
-      if (f is AutoGroupField) continue;
-      data[f.id] = f.value;
+    for (var f in _fieldStates.entries) {
+      if (f.value is AutoGroupField) continue;
+      data[f.key] = f.value.value;
     }
 
     widget.onSubmit(data);
   }
 
   void hideField(String id) {
-    var field = widget.children
-        .whereType<AutoFieldWidget>()
-        .firstWhere((e) => e.id == id);
+    var field = findFieldById(id);
 
-    if (field.isHidden.value) return;
+    if (field.isHidden) return;
 
     field.hide();
     setState(() {});
   }
 
   void showField(String id) {
-    var field = widget.children
-        .whereType<AutoFieldWidget>()
-        .firstWhere((e) => e.id == id);
-
-    if (!field.isHidden.value) return;
+    var field = findFieldById(id);
+    if (!field.isHidden) return;
 
     field.show();
     setState(() {});
   }
 
   void disableField(String id) {
-    var field = widget.children
-        .whereType<AutoFieldWidget>()
-        .firstWhere((e) => e.id == id);
+    var field = findFieldById(id);
 
-    if (!field.isEnabled.value) return;
+    if (!field.isEnabled) return;
 
-    setState(() {
-      field.disable();
-    });
+    field.disable();
+    setState(() {});
   }
 
   void enableField(String id) {
-    var field = widget.children
-        .whereType<AutoFieldWidget>()
-        .firstWhere((e) => e.id == id);
+    var field = findFieldById(id);
+    if (field.isEnabled) return;
 
-    if (field.isEnabled.value) return;
-
-    setState(() {
-      field.enable();
-    });
+    field.enable();
+    setState(() {});
   }
 
   void setValue(String id, String value) {
-    var field = widget.children
-        .whereType<AutoFieldWidget>()
-        .firstWhere((e) => e.id == id);
+    var field = findFieldById(id);
 
     field.setValue(value);
   }
 
   void setError(String id, String errorMessage) {
-    var field = widget.children
-        .whereType<AutoFieldWidget>()
-        .firstWhere((e) => e.id == id);
+    var field = findFieldById(id);
 
     field.setError(errorMessage);
   }

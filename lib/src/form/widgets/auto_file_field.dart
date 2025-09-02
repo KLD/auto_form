@@ -88,7 +88,7 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
   void initState() {
     super.initState();
 
-    widget.onValueSet.add((value) {
+    onValueSet.add((value) {
       setState(() {});
     });
   }
@@ -172,12 +172,12 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
         .map((e) => UriData.fromBytes(e.data, mimeType: e.mimeType).toString());
 
     if (value.isEmpty) {
-      widget.setValue("");
+      setValue("");
     }
     if (value.length == 1) {
-      widget.setValue(value.first);
+      setValue(value.first);
     } else {
-      widget.setValue(jsonEncode(value.toList()));
+      setValue(jsonEncode(value.toList()));
     }
   }
 
@@ -241,7 +241,7 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
 
       if (widget.settings.maxFileCount != null &&
           files.length + newFiles.length > widget.settings.maxFileCount!) {
-        widget.setError("Max file count exceeded");
+        setError("Max file count exceeded");
         return;
       }
 
@@ -263,7 +263,7 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
         ));
       }
     } catch (e) {
-      widget.setError("Unexpected error occured");
+      setError("Unexpected error occured");
     }
   }
 }

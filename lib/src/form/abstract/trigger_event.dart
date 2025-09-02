@@ -1,9 +1,9 @@
-import 'package:auto_form_plus/src/form/abstract/auto_field_widget.dart';
+import 'package:auto_form_plus/src/form/abstract/auto_field_state.dart';
 
 abstract class TriggerEvent {
   const TriggerEvent();
-  void apply(AutoFieldWidget field);
-  void reverse(AutoFieldWidget field);
+  void apply(AutoFieldState field);
+  void reverse(AutoFieldState field);
 }
 
 class _ReverseTriggerEventAdaptor extends TriggerEvent {
@@ -12,19 +12,19 @@ class _ReverseTriggerEventAdaptor extends TriggerEvent {
   const _ReverseTriggerEventAdaptor(this.triggerEvent);
 
   @override
-  void apply(AutoFieldWidget field) => triggerEvent.reverse(field);
+  void apply(AutoFieldState field) => triggerEvent.reverse(field);
 
   @override
-  void reverse(AutoFieldWidget field) => triggerEvent.apply(field);
+  void reverse(AutoFieldState field) => triggerEvent.apply(field);
 }
 
 class HideEvent extends TriggerEvent {
   const HideEvent();
   @override
-  void apply(AutoFieldWidget field) => field.hide();
+  void apply(AutoFieldState field) => field.hide();
 
   @override
-  void reverse(AutoFieldWidget field) => field.show();
+  void reverse(AutoFieldState field) => field.show();
 }
 
 class ShowEvent extends _ReverseTriggerEventAdaptor {
@@ -72,12 +72,12 @@ class FieldErrorEvent extends TriggerEvent {
   void reverse(field) => field.clearError();
 }
 
-class FormErrorEvent extends TriggerEvent {
-  final String errorMessage;
-  const FormErrorEvent(this.errorMessage);
-  @override
-  void apply(field) => field.form.setError(errorMessage);
+// class FormErrorEvent extends TriggerEvent {
+//   final String errorMessage;
+//   const FormErrorEvent(this.errorMessage);
+//   @override
+//   void apply(field) => field.form.setError(errorMessage);
 
-  @override
-  void reverse(field) => field.form.clearError();
-}
+//   @override
+//   void reverse(field) => field.form.clearError();
+// }
