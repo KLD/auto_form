@@ -46,14 +46,14 @@ class AutoForm extends StatefulWidget {
 
   String resolveValue(String value) {
     if (value.startsWith("@")) {
-      var targetField = findFieldById(value.substring(1));
+      var targetField = _findFieldById(value.substring(1));
 
       return targetField.value;
     }
     return value;
   }
 
-  AutoFieldWidget findFieldById(String id) {
+  AutoFieldWidget _findFieldById(String id) {
     return children.whereType<AutoFieldWidget>().firstWhere((e) => e.id == id);
   }
 }
@@ -64,7 +64,7 @@ class AutoFormState extends State<AutoForm> {
 
   void registerField(AutoFieldWidget field) {
     widget.fields[field.id] = field;
-    field.form = widget;
+    field.formPointer.value = widget;
   }
 
   @override
@@ -72,6 +72,19 @@ class AutoFormState extends State<AutoForm> {
     super.initState();
     widget.setErrorPointer.value = setFromError;
     widget.clearErrorPointer.value = clearFormError;
+  }
+
+  @override
+  void didUpdateWidget(covariant AutoForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    for (var f in oldWidget.fields.entries) {
+      widget.fields[f.key] = f.value;
+    }
+
+    for (var field in widget.fields.values) {
+      field.formPointer.value = widget;
+    }
   }
 
   @override

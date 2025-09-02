@@ -9,23 +9,26 @@ abstract class AutoFieldWidget extends StatefulWidget {
   final String initValue;
   final bool enabled;
   final bool hidden;
+  final bool required;
   final List<FieldValidation> validations;
   final List<FieldTrigger> triggers;
 
-  late final AutoForm form;
+  AutoForm get form => formPointer.value!;
+
+  final ValuePointer<AutoForm?> formPointer = ValuePointer<AutoForm?>(null);
 
   final ValuePointer<void Function()?> onRefresh = ValuePointer(null);
   final List<void Function(String)> onValueSet = [];
   final ValuePointer<void Function(String?)> setErrorPointer =
       ValuePointer((_) {});
 
-  final StringPointer _valuePointer = StringPointer("");
+  final StringPointer valuePointer = StringPointer("");
   final BoolPointer isHidden = BoolPointer(false);
   final BoolPointer isEnabled = BoolPointer(true);
   final BoolPointer mounted = BoolPointer(false);
   final List<void Function()> postponedTriggers = [];
 
-  String get value => _valuePointer.value;
+  String get value => valuePointer.value;
 
   AutoFieldWidget({
     required this.id,
@@ -33,22 +36,27 @@ abstract class AutoFieldWidget extends StatefulWidget {
     this.initValue = "",
     this.enabled = true,
     this.hidden = false,
-    this.validations = const [],
+    this.required = false,
+    List<FieldValidation>? validations,
     this.triggers = const [],
     super.key,
-  }) {
-    assert(validations.where((e) => e.value == "@$id").isEmpty,
+  }) : validations = validations ?? [] {
+    assert(this.validations.where((e) => e.value == "@$id").isEmpty,
         "Field validation cannot refrence itself");
     assert(triggers.where((e) => e.fieldId == id).isEmpty,
         "Triggers cannot refrence itself");
 
-    _valuePointer.value = initValue;
+    valuePointer.value = initValue;
     isHidden.value = hidden;
     isEnabled.value = enabled;
+
+    if (required) {
+      this.validations.insert(0, RequiredValidation());
+    }
   }
 
   void setValue(String value) {
-    _valuePointer.value = value;
+    valuePointer.value = value;
 
     for (var t in triggers) {
       t.handleTrigger(field: this, fieldValue: value);

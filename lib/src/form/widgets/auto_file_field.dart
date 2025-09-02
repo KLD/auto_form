@@ -9,6 +9,8 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../abstract/auto_field_state.dart';
 import '../abstract/auto_field_widget.dart';
 
+//! TODO file contain too many classes
+
 enum FileSource { gallery, camera, files }
 
 const fileGrabAdaptors = {
@@ -41,7 +43,7 @@ class AutoFileField extends AutoFieldWidget {
       FileSource.camera,
       FileSource.files
     ],
-    this.settings = const FilePickSettings(),
+    this.settings = const FilePickSettings.singleFile(),
     this.showFileName = false,
   });
 
@@ -54,7 +56,7 @@ class AutoFileField extends AutoFieldWidget {
     super.validations = const [],
     super.triggers = const [],
     super.initValue,
-    this.settings = const FilePickSettings(),
+    this.settings = const FilePickSettings.singleFile(),
     this.showFileName = false,
   }) : fileSource = const [FileSource.camera, FileSource.gallery];
 
@@ -128,26 +130,29 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
                                 ],
                               ),
                             ),
-                            Positioned(
+                            Positioned.directional(
+                                textDirection: TextDirection.ltr,
+                                top: -100,
+                                start: -100,
                                 child: Container(
-                              height: 13,
-                              width: 13,
-                              decoration: (BoxDecoration(
-                                color: Colors.black.withOpacity(0.5),
-                                shape: BoxShape.circle,
-                              )),
-                              child: GestureDetector(
-                                onTap: () => setState(() {
-                                  files.remove(file);
-                                  updateFieldValue();
-                                }),
-                                child: const Icon(
-                                  Icons.close,
-                                  size: 12,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ))
+                                  height: 13,
+                                  width: 13,
+                                  decoration: (BoxDecoration(
+                                    color: Colors.black.withOpacity(0.5),
+                                    shape: BoxShape.circle,
+                                  )),
+                                  child: GestureDetector(
+                                    onTap: () => setState(() {
+                                      files.remove(file);
+                                      updateFieldValue();
+                                    }),
+                                    child: const Icon(
+                                      Icons.close,
+                                      size: 12,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ))
                           ],
                         ),
                       ))
@@ -191,7 +196,7 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
       var result = showModalBottomSheet(
           context: context,
           enableDrag: true,
-          builder: (_) => GestureDetector(
+          builder: (context) => GestureDetector(
                 onTap: Navigator.of(context).pop,
                 child: SafeArea(
                   child: Column(
@@ -202,21 +207,21 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
                             title: const Text("Gallery"),
                             onTap: () {
                               selectedSource = FileSource.gallery;
-                              Navigator.pop(_, FileSource.gallery);
+                              Navigator.pop(context, FileSource.gallery);
                             }),
                       if (widget.fileSource.contains(FileSource.camera))
                         ListTile(
                             title: const Text("Camera"),
                             onTap: () {
                               selectedSource = FileSource.camera;
-                              Navigator.pop(_, FileSource.camera);
+                              Navigator.pop(context, FileSource.camera);
                             }),
                       if (widget.fileSource.contains(FileSource.files))
                         ListTile(
                             title: const Text("Files"),
                             onTap: () {
                               selectedSource = FileSource.files;
-                              Navigator.pop(_, FileSource.files);
+                              Navigator.pop(context, FileSource.files);
                             }),
                     ],
                   ),

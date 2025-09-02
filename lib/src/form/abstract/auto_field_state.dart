@@ -22,7 +22,7 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
       }
     };
 
-    widget.onValueSet.add((value) {});
+    // widget.onValueSet.add((value) {});
 
     widget.setErrorPointer.value = (message) {
       setState(() {
@@ -47,6 +47,13 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
   }
 
   @override
+  void didUpdateWidget(T oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    setupHooks();
+    widget.valuePointer.value = oldWidget.valuePointer.value;
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (widget.isHidden.value) return const SizedBox();
     return buildField(context);
@@ -55,8 +62,8 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
   Widget buildField(BuildContext context);
 
   Widget buildClearIcon() {
-    return GestureDetector(
-        onTap: widget.clear, child: const Icon(Icons.close, size: 16));
+    return IconButton(
+        onPressed: widget.clear, icon: const Icon(Icons.close, size: 16));
   }
 
   @override
