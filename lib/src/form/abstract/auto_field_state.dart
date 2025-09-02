@@ -12,12 +12,13 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
   bool isEnabled = true;
 
   final List<void Function()> postponedTriggers = [];
+  List<void Function(String)> onValueSet = [];
 
   @override
   void initState() {
     super.initState();
 
-    value = widget.initValue;
+    setValue(widget.initValue);
     isHidden = widget.hidden;
     isEnabled = widget.enabled;
 
@@ -83,8 +84,6 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
       e(newValue);
     }
   }
-
-  List<void Function(String)> onValueSet = [];
 
   void setError(String? errorMessage) {
     setState(() {

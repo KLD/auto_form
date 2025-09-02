@@ -89,6 +89,12 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
   }
 
   @override
+  void setValue(String newValue) {
+    super.setValue(newValue);
+    _controller.text = newValue;
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'fields/computed/computed_field_example.dart';
 import 'forms/login_form_example.dart';
 import 'forms/profile_form_example.dart';
 import 'forms/register_form_example.dart';
@@ -8,10 +9,11 @@ class ExampleHomePage extends StatelessWidget {
   const ExampleHomePage({super.key});
 
   // Define the list of form navigation items
-  static final List<(String label, Widget)> _formItems = [
+  static final List<(String, Widget)> _formItems = [
     ('Login Form', LoginFormExample()),
     ('Register Form', RegisterFormExample()),
     ('Profile Form', ProfileFormExample()),
+    ('Computed Field Example', ComputedFieldExample()),
   ];
 
   @override

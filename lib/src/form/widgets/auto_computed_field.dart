@@ -6,14 +6,14 @@ import '../abstract/comparor.dart';
 import '../abstract/detect_value_type.dart';
 
 class AutoComputedField extends AutoFieldWidget {
-  final List<String> fields;
+  final List<String> values;
   final ComputeOperation operation;
 
   AutoComputedField({
     super.key,
     required super.id,
     super.label = "",
-    required this.fields,
+    required this.values,
     required this.operation,
     super.enabled = true,
     super.validations = const [],
@@ -29,35 +29,35 @@ class _ComputedFieldWidgetState extends AutoFieldState<AutoComputedField> {
   @override
   void initState() {
     super.initState();
-
-    attachValueListers();
-
-    //! TODO test
-    // widget.onRefresh.value = () {
-    //   updateComputedValue();
-    // };
+    attachValueListeners();
+    updateComputedValue();
   }
 
-  void attachValueListers() {
-    for (var fieldId in widget.fields) {
+  @override
+  void refresh() {
+    super.refresh();
+    updateComputedValue();
+  }
+
+  void attachValueListeners() {
+    for (var fieldId in widget.values) {
       if (fieldId.startsWith("@")) {
         fieldId = fieldId.substring(1);
         var fieldValue = form.findFieldById(fieldId);
 
-        //! TODO test
-        // fieldValue.onValueSet.add((v) {
-        //   updateComputedValue();
-        // });
+        fieldValue.onValueSet.add((v) {
+          updateComputedValue();
+        });
       }
     }
   }
 
   void updateComputedValue() {
-    var firstValue = form.resolveValue(widget.fields.first);
+    var firstValue = form.resolveValue(widget.values.first);
 
     var totalValue = firstValue;
 
-    for (var field in widget.fields.skip(1)) {
+    for (var field in widget.values.skip(1)) {
       var fieldValue = form.resolveValue(field);
 
       try {
