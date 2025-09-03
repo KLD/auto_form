@@ -89,8 +89,8 @@ class AutoTextFieldState extends AutoFieldState<AutoTextField> {
   }
 
   @override
-  void setValue(String newValue) {
-    super.setValue(newValue);
+  void setValue(String newValue, [bool handleTriggers = true]) {
+    super.setValue(newValue, handleTriggers);
     _controller.text = newValue;
   }
 

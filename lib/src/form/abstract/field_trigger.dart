@@ -38,7 +38,7 @@ class FieldTrigger {
     var targetField =
         fieldId == null ? field : field.form.findFieldById(fieldId!);
 
-    if (targetField.mounted) {
+    if (targetField.isInitialized) {
       _handleEvent(result, event, targetField);
     } else {
       targetField.postponedTriggers

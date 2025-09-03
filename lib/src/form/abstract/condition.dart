@@ -1,5 +1,5 @@
-import 'detect_value_type.dart';
 import 'comparor.dart';
+import 'detect_value_type.dart';
 
 abstract class Condition {
   final Comparor? comparorOverride;

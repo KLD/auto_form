@@ -39,7 +39,7 @@ class AutoFormState extends State<AutoForm> {
   final _formKey = GlobalKey<FormState>();
   String? _errorMessage;
 
-  final Map<String, AutoFieldState> _fieldStates = {};
+  final Map<String, AutoFieldState> fieldStates = {};
 
   String resolveValue(String value) {
     if (value.startsWith("@")) {
@@ -51,11 +51,11 @@ class AutoFormState extends State<AutoForm> {
   }
 
   AutoFieldState findFieldById(String id) {
-    return _fieldStates[id]!;
+    return fieldStates[id]!;
   }
 
   void registerField(AutoFieldState field) {
-    _fieldStates[field.widget.id] = field;
+    fieldStates[field.widget.id] = field;
   }
 
   @override
@@ -109,7 +109,7 @@ class AutoFormState extends State<AutoForm> {
 
     Map<String, String> data = {};
 
-    for (var f in _fieldStates.entries) {
+    for (var f in fieldStates.entries) {
       if (f.value is AutoGroupField) continue;
       data[f.key] = f.value.value;
     }

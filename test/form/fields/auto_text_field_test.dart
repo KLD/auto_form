@@ -55,8 +55,8 @@ void main() {
         reason: "enabled doesn't match model");
     expect(field.isHidden, model.hidden, reason: "hidden doesn't match model");
     expect(field.value, model.initValue, reason: "value doesn't match model");
-    expect(field.form, form.widget, reason: "Form was not set");
-    expect(field, model, reason: "Model was modified");
+    expect(field.form, form, reason: "Form was not set");
+    expect(field.widget, model, reason: "Model was modified");
   });
 
   testWidgets("AutoText setValues alters value", (tester) async {

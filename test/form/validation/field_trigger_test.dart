@@ -279,7 +279,6 @@ void main() {
 
     var text2State = tester.state<AutoTextFieldState>(find.byKey(text2Key));
 
-    await tester.pump();
     expect(text2State.value.isEmpty, true, reason: "Should be empty");
   });
 }

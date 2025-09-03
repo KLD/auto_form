@@ -19,7 +19,7 @@ class FieldValidation {
   bool validate({required AutoFieldState field, required String value}) {
     String targetValue = field.form.resolveValue(value);
 
-    return condition(value, targetValue);
+    return condition(targetValue, this.value);
   }
 }
 

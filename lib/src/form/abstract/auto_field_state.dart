@@ -11,6 +11,8 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
   bool isHidden = false;
   bool isEnabled = true;
 
+  bool isInitialized = false;
+
   final List<void Function()> postponedTriggers = [];
   List<void Function(String)> onValueSet = [];
 
@@ -18,46 +20,25 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
   void initState() {
     super.initState();
 
-    setValue(widget.initValue);
     isHidden = widget.hidden;
     isEnabled = widget.enabled;
 
-    setupHooks();
-  }
-
-  void setupHooks() {
     var form = context.findAncestorStateOfType<AutoFormState>();
     if (form == null) {
       throw "No AutoForm found in widget tree";
     }
     form.registerField(this);
 
-    // widget.onRefresh.value = () {
-    //   if (mounted) {
-    //     setState(() {});
-    //   }
-    // };
-
-    // widget.onValueSet.add((value) {});
-
-    // widget.setErrorPointer.value = (message) {
-    //   setState(() {
-    //     errorMessage = message;
-    //   });
-    // };
-
-    // if (widget.initValue.isNotEmpty) {
-    //   widget.setValue(widget.initValue);
-    // }
-
-    if (postponedTriggers.isNotEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setValue(widget.initValue);
+      if (postponedTriggers.isNotEmpty) {
         for (var t in postponedTriggers) {
           t();
         }
         postponedTriggers.clear();
-      });
-    }
+      }
+      isInitialized = true;
+    });
   }
 
   @override
@@ -73,11 +54,13 @@ abstract class AutoFieldState<T extends AutoFieldWidget> extends State<T> {
         onPressed: clear, icon: const Icon(Icons.close, size: 16));
   }
 
-  void setValue(String newValue) {
+  void setValue(String newValue, [bool handleTriggers = true]) {
     this.value = newValue;
 
-    for (var t in widget.triggers) {
-      t.handleTrigger(field: this, fieldValue: newValue);
+    if (handleTriggers) {
+      for (var t in widget.triggers) {
+        t.handleTrigger(field: this, fieldValue: newValue);
+      }
     }
 
     for (var e in onValueSet) {
