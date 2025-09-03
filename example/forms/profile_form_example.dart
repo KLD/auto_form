@@ -12,7 +12,7 @@ class ProfileFormExample extends StatelessWidget {
       ),
       body: AutoForm(
         onSubmit: (values) {
-          // Handle form submission
+          // ignore: avoid_print
           print(values);
         },
         children: [

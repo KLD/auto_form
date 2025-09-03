@@ -1,19 +1,20 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../abstract/auto_field_state.dart';
 import '../abstract/auto_field_widget.dart';
-
-//! TODO file contain too many classes
+import 'file/file_data.dart';
+import 'file/file_pick_settings.dart';
+import 'file/picker_adapters/camera_picker_adapter.dart';
+import 'file/picker_adapters/file_picker_adapter.dart';
+import 'file/preview_adapters/image_preview_adapter.dart';
+import 'file/preview_adapters/pdf_preview_adapter.dart';
 
 enum FileSource { gallery, camera, files }
 
-const fileGrabAdaptors = {
+const filePickerAdaptors = {
   FileSource.gallery: CameraPickerAdapter(ImageSource.gallery),
   FileSource.camera: CameraPickerAdapter(ImageSource.camera),
   FileSource.files: FilePickerAdapter(),
@@ -21,6 +22,13 @@ const fileGrabAdaptors = {
 
 const previewDataAdaptors = {
   "pdf": PdfPreviewAdapter(),
+  "png": ImagePreviewAdapter(),
+  "jpg": ImagePreviewAdapter(),
+  "jpeg": ImagePreviewAdapter(),
+  "gif": ImagePreviewAdapter(),
+  "bmp": ImagePreviewAdapter(),
+  "webp": ImagePreviewAdapter(),
+  "wbmp": ImagePreviewAdapter(),
 };
 
 class AutoFileField extends AutoFieldWidget {
@@ -138,7 +146,7 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
                                   height: 13,
                                   width: 13,
                                   decoration: (BoxDecoration(
-                                    color: Colors.black.withOpacity(0.5),
+                                    color: Colors.black.withValues(alpha: 0.5),
                                     shape: BoxShape.circle,
                                   )),
                                   child: GestureDetector(
@@ -182,8 +190,11 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
   }
 
   Widget buildPreview(FileData file) {
-    var previewAdaptor =
-        previewDataAdaptors[file.mimeType] ?? const ImagePreviewAdapter();
+    var previewAdaptor = previewDataAdaptors[file.mimeType];
+
+    if (previewAdaptor == null) {
+      throw Exception("No preview adapter found for ${file.mimeType}");
+    }
     return previewAdaptor.preview(context, file);
   }
 
@@ -236,7 +247,8 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
     }
 
     try {
-      var newFiles = await fileGrabAdaptors[source]!.grabFile(widget.settings);
+      var newFiles =
+          await filePickerAdaptors[source]!.grabFile(widget.settings);
       if (newFiles == null) return;
 
       if (widget.settings.maxFileCount != null &&
@@ -265,179 +277,5 @@ class AutoFileState extends AutoFieldState<AutoFileField> {
     } catch (e) {
       setError("Unexpected error occured");
     }
-  }
-}
-
-class FilePickSettings {
-  final List<String>? allowedExtensions;
-  final int? maxFileCount;
-  final int? maxFileSize;
-  final double? maxHeight;
-  final double? maxWidth;
-  final int? imageQuality;
-
-  const FilePickSettings({
-    this.allowedExtensions,
-    this.maxFileCount,
-    this.maxFileSize,
-    this.maxHeight,
-    this.maxWidth,
-    this.imageQuality,
-  });
-
-  const FilePickSettings.singleFile({
-    this.allowedExtensions,
-    this.maxFileSize,
-    this.maxHeight,
-    this.maxWidth,
-    this.imageQuality,
-  }) : maxFileCount = 1;
-}
-
-class FileData {
-  final String name;
-  final Uint8List data;
-  final String mimeType;
-  final int size;
-
-  const FileData({
-    required this.name,
-    required this.data,
-    required this.mimeType,
-    required this.size,
-  });
-
-  @override
-  bool operator ==(Object other) {
-    return other is FileData && other.hashCode == hashCode;
-  }
-
-  @override
-  int get hashCode => data.reduce((value, element) => value + element).hashCode;
-}
-
-abstract class PickerAdapter {
-  Future<List<FileData>?> grabFile(FilePickSettings settings);
-}
-
-class FilePickerAdapter implements PickerAdapter {
-  const FilePickerAdapter();
-  @override
-  Future<List<FileData>?> grabFile(FilePickSettings settings) async {
-    var files = await FilePicker.platform.pickFiles(
-        allowedExtensions: settings.allowedExtensions,
-        allowMultiple: settings.maxFileCount != 1);
-
-    if (files == null) return null;
-
-    if (settings.maxFileCount != null &&
-        files.files.length > settings.maxFileCount!) {
-      throw ("Max file count exceeded");
-    }
-
-    if (settings.maxFileSize != null &&
-        files.files.any((e) => e.size > settings.maxFileSize!)) {
-      throw ("Some files exceed max size (${convertByteToDisplay(settings.maxFileSize!)})");
-    }
-
-    if (files.files.any((e) => e.extension == null)) {
-      throw "You have selected a curropted file: ${files.files.firstWhere((e) => e.extension == null).name}";
-    }
-
-    return [
-      for (var file in files.files)
-        FileData(
-            name: file.name,
-            data: await file.xFile.readAsBytes(),
-            mimeType: file.extension!,
-            size: file.size)
-    ];
-  }
-}
-
-class CameraPickerAdapter implements PickerAdapter {
-  final ImageSource source;
-
-  const CameraPickerAdapter(this.source);
-
-  @override
-  Future<List<FileData>?> grabFile(FilePickSettings settings) async {
-    var file = await ImagePicker().pickImage(
-      source: source,
-      imageQuality: 100,
-      maxHeight: settings.maxHeight,
-      maxWidth: settings.maxWidth,
-      requestFullMetadata: true,
-    );
-
-    if (file == null) return null;
-
-    var bytes = await file.readAsBytes();
-    var fileSize = bytes.length;
-
-    if (settings.maxFileSize != null && fileSize > settings.maxFileSize!) {
-      throw ("Image exceed max size allowed: (${convertByteToDisplay(settings.maxFileSize!)})");
-    }
-
-    var extentionToken = file.path.split(".");
-
-    if (file.mimeType == null && extentionToken.length < 2) {
-      throw "You have selected a curropted image";
-    }
-
-    return [
-      FileData(
-        name: file.name,
-        data: bytes,
-        mimeType: file.mimeType ?? "image/${extentionToken.last}",
-        size: fileSize,
-      ),
-    ];
-  }
-}
-
-String convertByteToDisplay(int bytes) {
-  if (bytes < 1024) {
-    return "${bytes}B";
-  } else if (bytes < 1024 * 1024) {
-    return "${(bytes / 1024).toStringAsFixed(2)}KB";
-  } else if (bytes < 1024 * 1024 * 1024) {
-    return "${(bytes / 1024 / 1024).toStringAsFixed(2)}MB";
-  } else {
-    return "${(bytes / 1024 / 1024 / 1024).toStringAsFixed(2)}GB";
-  }
-}
-
-abstract class FileExtentionPreviewAdapter {
-  const FileExtentionPreviewAdapter();
-  Widget preview(BuildContext context, FileData file);
-}
-
-class ImagePreviewAdapter implements FileExtentionPreviewAdapter {
-  const ImagePreviewAdapter();
-  @override
-  Widget preview(BuildContext context, FileData file) {
-    return Image.memory(
-      file.data,
-      fit: BoxFit.cover,
-      errorBuilder: (context, error, stackTrace) => const Icon(Icons.block),
-    );
-  }
-}
-
-class PdfPreviewAdapter implements FileExtentionPreviewAdapter {
-  const PdfPreviewAdapter();
-  @override
-  Widget preview(BuildContext context, FileData file) {
-    return AbsorbPointer(
-      child: SfPdfViewer.memory(
-        file.data,
-        canShowScrollHead: false,
-        canShowPaginationDialog: false,
-        canShowScrollStatus: false,
-        enableDoubleTapZooming: false,
-        enableTextSelection: false,
-      ),
-    );
   }
 }

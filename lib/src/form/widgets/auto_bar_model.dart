@@ -93,7 +93,8 @@ class _DynamicBarFieldState extends AutoFieldState<AutoBarField>
                     flex: 100 - barAnimation.value.toInt(),
                     child: SizedBox(
                       height: 12,
-                      child: ColoredBox(color: widget.color.withOpacity(.50)),
+                      child: ColoredBox(
+                          color: widget.color.withValues(alpha: .50)),
                     ),
                   ),
                 ],
